@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/29 19:44:28 by paperrin          #+#    #+#             */
-/*   Updated: 2017/07/30 16:16:13 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/07/30 19:51:40 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ typedef struct		s_app
 	t_mlx			mlx;
 	t_mlx_image		draw_buf;
 	t_vec3f			pos;
+	int				width;
+	int				height;
 }					t_app;
 
 typedef struct		s_color
@@ -52,6 +54,7 @@ void		destroy_app(t_app *app, int exit_code);
 int			event_key_pressed(int key, void *param);
 int			event_key_released(int key, void *param);
 int			event_key_down(int key, void *param);
+int			event_mouse_pressed(int key, int x, int y, void *param);
 int			event_loop(void *param);
 void		put_pixel(const t_app *app, const t_vec3f pos
 		, const t_color color_rgb);

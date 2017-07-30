@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/29 19:42:58 by paperrin          #+#    #+#             */
-/*   Updated: 2017/07/30 16:32:40 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/07/30 20:02:53 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 static int		create_app(t_app *app, size_t width, size_t height
 		, char *title)
 {
+	app->width = width;
+	app->height = height;
 	if (!(app->mlx.core = mlx_init()))
 		return (0);
 	if (!(app->mlx.win = mlx_new_window(app->mlx.core
@@ -66,12 +68,12 @@ static t_color	color_from_hsv(int h, int s, int v)
 	return (color);
 }
 
-void			draw_julia(t_app *app)
+/*void			draw_julia(t_app *app)
 {
-	double	c_re = -0.9, c_im = 0.27015;
+	double	c_re = -0.7, c_im = 0.27015;
 	double	new_re, new_im, old_re, old_im;
 	t_color	color;
-	int		max_iterations = 300;
+	int		max_iterations = 50;
 	int		w = 800, h = 800;
 	int		x, y, i;
 
@@ -81,8 +83,8 @@ void			draw_julia(t_app *app)
 		x = -1;
 		while (++x < w)
 		{
-			new_re = 1.5 * (x - w / 2) / (0.5 * app->pos.z * w) + app->pos.x;
-			new_im = (y - h / 2) / (0.5 * app->pos.z * h) + app->pos.y;
+			new_re = (1.5 * (x - w / 2) / (0.5 * app->pos.z * w)) + app->pos.x / 400;
+			new_im = (y - h / 2) / (0.5 * app->pos.z * h) - app->pos.y / 400;
 			i = -1;
 			while (++i < max_iterations)
 			{
@@ -98,6 +100,42 @@ void			draw_julia(t_app *app)
 		}
 	}
 	mlx_put_image_to_window(app->mlx.core, app->mlx.win, app->draw_buf.image, 0, 0);
+}*/
+
+void			draw_julia(t_app *app)
+{
+	double	p_re, p_im;
+	double	new_re, new_im, old_re, old_im;
+	t_color	color;
+	int		max_iterations = 300;
+	int		x, y, i;
+
+	y = -1;
+	while (++y < app->height)
+	{
+		x = -1;
+		while (++x < app->width)
+		{
+			p_re = 1.5 * ((x - app->width / 2) / (0.5 * app->pos.z * app->width) + app->pos.x / 400) - 0.5;
+			p_im = (y - app->height / 2) / (0.5 * app->pos.z * app->height) - app->pos.y / 400;
+			new_re = 0;
+			new_im = 0;
+			i = -1;
+			while (++i < max_iterations)
+			{
+				old_re = new_re;
+				old_im = new_im;
+				new_re = old_re * old_re - old_im * old_im + p_re;
+				new_im = 2 * old_re * old_im + p_im;
+				if ((new_re * new_re + new_im * new_im) > 4)
+					break ;
+			}
+			color = color_from_hsv(i % 361,100,100 * (i < max_iterations));
+			put_pixel(app, (t_vec3f){x, y, 0}, color);
+		}
+	}
+	put_pixel(app, (t_vec3f){400, 400, 0}, (t_color){255,0,0});
+	mlx_put_image_to_window(app->mlx.core, app->mlx.win, app->draw_buf.image, 0, 0);
 }
 
 int				main(void)
@@ -107,6 +145,7 @@ int				main(void)
 	if (!create_app(&app, 800, 800, "Fract'ol paperrin"))
 		return (EXIT_FAILURE);
 	draw_julia(&app);
+	mlx_mouse_hook(app.mlx.win, &event_mouse_pressed, &app);
 	mlx_hook(app.mlx.win, 3, 0, &event_key_released, &app);
 	mlx_hook(app.mlx.win, 2, 3, &event_key_down, &app);
 	mlx_loop(app.mlx.core);
