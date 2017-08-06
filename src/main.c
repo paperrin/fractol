@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/29 19:42:58 by paperrin          #+#    #+#             */
-/*   Updated: 2017/07/30 20:02:53 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/08/06 19:43:44 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ static int		create_app(t_app *app, size_t width, size_t height
 			, &(app->draw_buf.bits_per_pixel)
 			, &(app->draw_buf.bytes_width)
 			, &(app->draw_buf.is_big_endian));
-	app->pos = (t_vec3f){0,0,1};
+	app->fract.pos = ft_vec3d(0, 0, 1);
+	app->fract.size = ft_vec3d(4, 4, 0);
 	return (1);
 }
 
@@ -104,10 +105,11 @@ static t_color	color_from_hsv(int h, int s, int v)
 
 void			draw_julia(t_app *app)
 {
-	double	p_re, p_im;
-	double	new_re, new_im, old_re, old_im;
+	t_complex	c;
+	t_complex	new;
+	t_complex	old;
 	t_color	color;
-	int		max_iterations = 300;
+	int		max_iterations = 50;
 	int		x, y, i;
 
 	y = -1;
@@ -116,25 +118,28 @@ void			draw_julia(t_app *app)
 		x = -1;
 		while (++x < app->width)
 		{
-			p_re = 1.5 * ((x - app->width / 2) / (0.5 * app->pos.z * app->width) + app->pos.x / 400) - 0.5;
-			p_im = (y - app->height / 2) / (0.5 * app->pos.z * app->height) - app->pos.y / 400;
-			new_re = 0;
-			new_im = 0;
+			c.r = map_nb(x, (int[2]){0, app->width - 1}
+					, (double[2]){app->fract.pos.x - app->fract.size.x / 2
+						, app->fract.pos.x + app->fract.size.x / 2});
+			c.i = map_nb(y, (int[2]){0, app->height - 1}
+					, (double[2]){app->fract.pos.y - app->fract.size.y / 2
+						, app->fract.pos.y + app->fract.size.y / 2});
+			new.r = 0;
+			new.i = 0;
 			i = -1;
 			while (++i < max_iterations)
 			{
-				old_re = new_re;
-				old_im = new_im;
-				new_re = old_re * old_re - old_im * old_im + p_re;
-				new_im = 2 * old_re * old_im + p_im;
-				if ((new_re * new_re + new_im * new_im) > 4)
+				old = new;
+				new.r = old.r * old.r - old.i * old.i + c.r;
+				new.i = 2 * old.r * old.i + c.i;
+				if ((new.r * new.r + new.i * new.i) > 4)
 					break ;
 			}
 			color = color_from_hsv(i % 361,100,100 * (i < max_iterations));
-			put_pixel(app, (t_vec3f){x, y, 0}, color);
+			put_pixel(app, (t_vec3d){x, y, 0}, color);
 		}
 	}
-	put_pixel(app, (t_vec3f){400, 400, 0}, (t_color){255,0,0});
+	put_pixel(app, (t_vec3d){400, 400, 0}, (t_color){255,0,0});
 	mlx_put_image_to_window(app->mlx.core, app->mlx.win, app->draw_buf.image, 0, 0);
 }
 

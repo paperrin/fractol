@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/30 14:39:45 by paperrin          #+#    #+#             */
-/*   Updated: 2017/07/30 15:18:17 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/08/06 18:27:56 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static unsigned int		get_color(void *mlx_core, t_color color)
 }
 
 void					put_pixel(const t_app *app
-		, const t_vec3f pos, const t_color color_rgb)
+		, const t_vec3d pos, const t_color color_rgb)
 {
 	size_t			index;
 	unsigned int 	color_encoded;

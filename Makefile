@@ -6,7 +6,7 @@
 #    By: paperrin <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/29 19:37:35 by paperrin          #+#    #+#              #
-#    Updated: 2017/07/30 15:18:51 by paperrin         ###   ########.fr        #
+#    Updated: 2017/08/06 17:59:18 by paperrin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,8 @@ LIB_PARAMS	=	$(LIB_DIRS:%=-L%)
 
 CFILES		=	main.c				\
 				event.c				\
-				put_pixel.c
+				put_pixel.c			\
+				map_nb.c
 
 HFILES		=
 

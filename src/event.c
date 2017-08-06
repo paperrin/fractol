@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/29 20:18:42 by paperrin          #+#    #+#             */
-/*   Updated: 2017/07/30 19:55:09 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/08/06 19:51:38 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,39 +18,48 @@ int			event_key_down(int key, void *param)
 	float	speed;
 
 	app = (t_app*)param;
-	speed = 50;
+	speed = 0.2;
 	if (key == 24)
-		app->pos.z *= 1.5;
+		app->fract.pos.z *= 1.2;
 	else if (key == 27)
-		app->pos.z /= 2;
+		app->fract.pos.z /= 1.2;
 	else if (key == 13)
-		app->pos.y += speed / app->pos.z;
+		app->fract.pos.y -= speed / app->fract.pos.z;
 	else if (key == 0)
-		app->pos.x -= speed / app->pos.z;
+		app->fract.pos.x -= speed / app->fract.pos.z;
 	else if (key == 1)
-		app->pos.y -= speed / app->pos.z;
+		app->fract.pos.y += speed / app->fract.pos.z;
 	else if (key == 2)
-		app->pos.x += speed / app->pos.z;
-
+		app->fract.pos.x += speed / app->fract.pos.z;
+	else if (key == 15)
+	{
+		app->fract.pos = ft_vec3d(0, 0, 1);
+		app->fract.size = ft_vec3d(4, 4, 0);
+	}
+	app->fract.size = (t_vec3d){4 / app->fract.pos.z, 4 / app->fract.pos.z, 0};
 	draw_julia(app);
-
 	return (0);
 }
 
+
+#include <stdio.h>
 int			event_mouse_pressed(int key, int x, int y, void *param)
 {
-	static float	last_zoom;
-	t_app	*app;
+	t_app		*app;
+	t_vec3d		clicked;
 
 	app = (t_app*)param;
-	x = app->width - x;
-	ft_printf("MOUSE_PRESSED button %d @ { %d, %d }\n", key, x, y);
+	clicked.x = map_nb(x, (int[2]){0, app->width - 1}
+			, (double[2]){app->fract.pos.x - app->fract.size.x / 2
+				, app->fract.pos.x + app->fract.size.x / 2});
+	clicked.y = map_nb(y, (int[2]){0, app->height - 1}
+			, (double[2]){app->fract.pos.y - app->fract.size.y / 2
+				, app->fract.pos.y + app->fract.size.y / 2});
 	if (key == 1)
 	{
-		last_zoom = app->pos.z;
-		app->pos.z *= 1.2;
-		app->pos.x = (app->pos.x - (x - app->width / 2));
-		app->pos.y = (app->pos.y - (y - app->height / 2));
+		app->fract.pos = (t_vec3d){clicked.x + (app->fract.pos.x - clicked.x) / 1.2, clicked.y + (app->fract.pos.y - clicked.y) / 1.2
+			, app->fract.pos.z * 1.2};
+		app->fract.size = (t_vec3d){4 / app->fract.pos.z, 4 / app->fract.pos.z, 0};
 		draw_julia(app);
 	}
 	return (0);
