@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/29 20:18:42 by paperrin          #+#    #+#             */
-/*   Updated: 2017/08/06 19:51:38 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/08/06 22:03:14 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int			event_key_down(int key, void *param)
 		app->fract.pos.x += speed / app->fract.pos.z;
 	else if (key == 15)
 	{
-		app->fract.pos = ft_vec3d(0, 0, 1);
+		app->fract.pos = ft_vec3d(-0.6, 0, 1);
 		app->fract.size = ft_vec3d(4, 4, 0);
 	}
 	app->fract.size = (t_vec3d){4 / app->fract.pos.z, 4 / app->fract.pos.z, 0};

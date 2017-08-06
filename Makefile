@@ -6,7 +6,7 @@
 #    By: paperrin <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/29 19:37:35 by paperrin          #+#    #+#              #
-#    Updated: 2017/08/06 17:59:18 by paperrin         ###   ########.fr        #
+#    Updated: 2017/08/06 21:27:14 by paperrin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME		=	fractol
 
 CC			=	gcc
 
-CFLAGS		=	-g -Wall -Wextra -Werror
+CFLAGS		=	-O3 -Wall -Wextra -Werror
 
 RM			=	rm -rf
 
