@@ -12,14 +12,14 @@
 
 #include "fractol.h"
 
-double		map_nb(int value, int input[2], double output[2])
+long double		map_nb(int value, int input[2], long double output[2])
 {
-	double		scale_factor;
-	double		input_diff;
+	long double		scale_factor;
+	long double		input_diff;
 
 	input_diff = (input[1] - input[0]);
 	if (input_diff == 0)
-		input_diff = 1;
+		input_diff = 0.0001;
 	scale_factor = (output[1] - output[0]) / input_diff;
-	return (output[0] + (double)value * scale_factor);
+	return (output[0] + (long double)value * scale_factor);
 }

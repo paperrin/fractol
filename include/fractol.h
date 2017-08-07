@@ -36,14 +36,14 @@ typedef struct		s_mlx
 
 typedef struct		s_complex
 {
-	double			r;
-	double			i;
+	long double		r;
+	long double		i;
 }					t_complex;
 
 typedef struct		s_fract
 {
-	t_vec3d			pos;
-	t_vec3d			size;
+	t_vec3ld			pos;
+	t_vec3ld			size;
 }					t_fract;
 
 typedef struct		s_app
@@ -63,16 +63,16 @@ typedef struct		s_color
 	unsigned char	b;
 }					t_color;
 
-void		destroy_app(t_app *app, int exit_code);
-int			event_key_pressed(int key, void *param);
-int			event_key_released(int key, void *param);
-int			event_key_down(int key, void *param);
-int			event_mouse_pressed(int key, int x, int y, void *param);
-int			event_loop(void *param);
-void		put_pixel(const t_app *app, const t_vec3d pos
+void			destroy_app(t_app *app, int exit_code);
+int				event_key_pressed(int key, void *param);
+int				event_key_released(int key, void *param);
+int				event_key_down(int key, void *param);
+int				event_mouse_pressed(int key, int x, int y, void *param);
+int				event_loop(void *param);
+void			put_pixel(const t_app *app, const t_vec3ld pos
 		, const t_color color_rgb);
-void		draw_julia(t_app *app);
+void			draw_julia(t_app *app);
 
-double		map_nb(int value, int input[2], double output[2]);
+long double		map_nb(int value, int input[2], long double output[2]);
 
 #endif

@@ -24,7 +24,7 @@ static unsigned int		get_color(void *mlx_core, t_color color)
 }
 
 void					put_pixel(const t_app *app
-		, const t_vec3d pos, const t_color color_rgb)
+		, const t_vec3ld pos, const t_color color_rgb)
 {
 	size_t			index;
 	unsigned int 	color_encoded;

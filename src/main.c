@@ -40,7 +40,7 @@ void			destroy_app(t_app *app, int exit_code)
 		mlx_destroy_image(app->mlx.core, app->draw_buf.image);
 	exit(exit_code);
 }
-/*
+//*
 static t_color	color_from_hsv(int h, int s, int v)
 {
 	int				ti;
@@ -98,13 +98,14 @@ void			draw_julia(t_app *app)
 				if ((old.r * old.r + old.i * old.i) > 4)
 					break ;
 			}
-			color = (t_color){255 % i * (i < max_iterations), 125 + 125 % i, 125 + i % 125};//color_from_hsv(i % 361,100,100 * (i < max_iterations));
-			put_pixel(app, (t_vec3d){x, y, 0}, color);
+			//color = (t_color){255 % i * (i < max_iterations), 125 + 125 % i, 125 + i % 125};
+			color = color_from_hsv(i % 361,100,100 * (i < max_iterations));
+			put_pixel(app, (t_vec3ld){x, y, 0}, color);
 			c.r += c_inc.r;
 		}
 		c.i += c_inc.i;
 	}
-	put_pixel(app, (t_vec3d){400, 400, 0}, (t_color){255,0,0});
+	put_pixel(app, (t_vec3ld){400, 400, 0}, (t_color){255,0,0});
 	mlx_put_image_to_window(app->mlx.core, app->mlx.win, app->draw_buf.image, 0, 0);
 }
 
