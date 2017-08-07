@@ -6,7 +6,7 @@
 #    By: paperrin <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/29 19:37:35 by paperrin          #+#    #+#              #
-#    Updated: 2017/08/06 21:27:14 by paperrin         ###   ########.fr        #
+#    Updated: 2017/08/07 23:30:04 by paperrin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME		=	fractol
 
 CC			=	gcc
 
-CFLAGS		=	-O3 -Wall -Wextra -Werror
+CFLAGS		=	#-O3 -Wall -Wextra -Werror
 
 RM			=	rm -rf
 
@@ -39,9 +39,10 @@ LIB_PARAMS	=	$(LIB_DIRS:%=-L%)
 CFILES		=	main.c				\
 				event.c				\
 				put_pixel.c			\
-				map_nb.c
+				map_nb.c			\
+				fract_mandelbrot.c	\
 
-HFILES		=
+HFILES		=	./include/fractol.h
 
 SRC			=	$(CFILES:%=$(SRC_DIR)%)
 

@@ -6,13 +6,13 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/30 14:39:45 by paperrin          #+#    #+#             */
-/*   Updated: 2017/08/06 18:27:56 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/08/07 20:24:44 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static unsigned int		get_color(void *mlx_core, t_color color)
+static unsigned int		get_color(void *mlx_core, t_color_rgb color)
 {
 	int		encoded;
 
@@ -24,13 +24,13 @@ static unsigned int		get_color(void *mlx_core, t_color color)
 }
 
 void					put_pixel(const t_app *app
-		, const t_vec3ld pos, const t_color color_rgb)
+		, t_vec2i pos, t_color_rgb rgb)
 {
 	size_t			index;
 	unsigned int 	color_encoded;
 	int				i;
 
-	color_encoded = get_color(app->mlx.core, color_rgb);
+	color_encoded = get_color(app->mlx.core, rgb);
 	index = ((pos.y * app->draw_buf.bytes_width) + (pos.x * 4));
 	i = -1;
 	while (++i < 3)
