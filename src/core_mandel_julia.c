@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/08 20:05:18 by paperrin          #+#    #+#             */
-/*   Updated: 2017/08/08 20:10:42 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/08/08 22:56:01 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static void		iterate(t_app *app, t_vec2i screen_pos, t_complex c
 	iter = -1;
 	while (++iter < app->fract.max_iter)
 	{
+		if (app->fract.is_burning_ship)
+			new = (t_complex){fabs((double)new.r), fabs((double)new.i)};
 		old = new;
 		if ((old.r * old.r + old.i * old.i) > 4)
 			break ;
@@ -44,7 +46,6 @@ static void		*render_section(void *arg_v)
 	t_thread_arg	*arg;
 
 	arg = (t_thread_arg*)arg_v;
-	arg->app->fract.max_iter = 100;
 	c_inc.r = arg->app->fract.size.x / arg->app->width;
 	c_inc.i = arg->app->fract.size.y / arg->app->height;
 	c.i = (arg->app->fract.pos.y - arg->app->fract.size.y / 2) + (c_inc.i * arg->start.y);

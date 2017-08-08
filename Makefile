@@ -6,7 +6,7 @@
 #    By: paperrin <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/29 19:37:35 by paperrin          #+#    #+#              #
-#    Updated: 2017/08/08 20:08:37 by paperrin         ###   ########.fr        #
+#    Updated: 2017/08/08 22:51:30 by paperrin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,16 +36,18 @@ INC_PARAMS	=	$(INC_DIRS:%=-I%)
 
 LIB_PARAMS	=	$(LIB_DIRS:%=-L%)
 
-CFILES		=	main.c				\
-				event.c				\
-				event2.c			\
-				put_pixel.c			\
-				map_nb.c			\
-				core_mandel_julia.c	\
-				fract_mandelbrot.c	\
-				fract_julia.c		\
+CFILES		=	main.c					\
+				event.c					\
+				event2.c				\
+				put_pixel.c				\
+				map_nb.c				\
+				core_mandel_julia.c		\
+				fract_mandelbrot.c		\
+				fract_julia.c			\
+				fract_burning_ship.c
 
-HFILES		=	./include/fractol.h
+HFILES		=	./include/fractol.h			\
+				./include/X11.h
 
 SRC			=	$(CFILES:%=$(SRC_DIR)%)
 

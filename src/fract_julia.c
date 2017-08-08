@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/08 19:45:17 by paperrin          #+#    #+#             */
-/*   Updated: 2017/08/08 21:00:17 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/08/08 23:06:57 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,12 @@ void			fract_julia(t_app *app)
 void			fract_julia_init(t_app *app)
 {
 	app->fract.f_fractal = fract_julia;
-	app->fract.c_julia = (t_complex){-0.8,0.156};
+	app->fract.max_iter = 100;
+	app->fract.origin = ft_vec3ld(0, 0, 1);
+	app->fract.c_julia = (t_complex){0, 0};
 	app->fract.origin = ft_vec3ld(0, 0, 1);
 	app->fract.base_size = ft_vec3ld(4, 4, 0);
+	app->fract.is_burning_ship = 0;
+	app->fract.mouse_locked = 0;
+	event_key_release(KC_R, app);
 }

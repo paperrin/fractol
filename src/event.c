@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/29 20:18:42 by paperrin          #+#    #+#             */
-/*   Updated: 2017/08/08 21:04:25 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/08/08 23:07:31 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,57 +19,62 @@ int			event_key_down(int key, void *param)
 
 	app = (t_app*)param;
 	speed = 0.2;
-	if (key == 24)
-		app->fract.pos.z *= 1.2;
-	else if (key == 27)
-		app->fract.pos.z /= 1.2;
-	else if (key == 13)
+	if (key == KC_ADD || key == KC_SUBTRACT)
+		zoom(app, ft_vec2i(app->width / 2, app->height / 2), 1.2
+				, key == KC_ADD);
+	else if (key == KC_W)
 		app->fract.pos.y -= speed / app->fract.pos.z;
-	else if (key == 0)
+	else if (key == KC_A)
 		app->fract.pos.x -= speed / app->fract.pos.z;
-	else if (key == 1)
+	else if (key == KC_S)
 		app->fract.pos.y += speed / app->fract.pos.z;
-	else if (key == 2)
+	else if (key == KC_D)
 		app->fract.pos.x += speed / app->fract.pos.z;
-	else if (key == 15)
-	{
-		app->fract.pos = app->fract.origin;
-		app->fract.size = app->fract.base_size;
-	}
-	app->fract.size = (t_vec3ld){4 / app->fract.pos.z, 4 / app->fract.pos.z, 0};
 	(*app->fract.f_fractal)(app);
 	return (0);
 }
 
-
-int			event_mouse_pressed(int key, int x, int y, void *param)
+int			event_key_release(int key, void *param)
 {
 	t_app		*app;
-	t_vec3ld		clicked;
 
 	app = (t_app*)param;
-	if (y < 0)
-		return (0);
-	clicked.x = map_nb(x, (int[2]){0, app->width - 1}
-			, (long double[2]){app->fract.pos.x - app->fract.size.x / 2
-				, app->fract.pos.x + app->fract.size.x / 2});
-	clicked.y = map_nb(y, (int[2]){0, app->height - 1}
-			, (long double[2]){app->fract.pos.y - app->fract.size.y / 2
-				, app->fract.pos.y + app->fract.size.y / 2});
-	if (key == 1)
+	if (key == KC_ESCAPE)
+		destroy_app((t_app*)param, EXIT_SUCCESS);
+	else if (key == KC_L)
+		app->fract.mouse_locked = !app->fract.mouse_locked;
+	else if (key == KC_1)
+		fract_mandelbrot_init(app);
+	else if (key == KC_2)
+		fract_julia_init(app);
+	else if (key == KC_3)
+		fract_burning_ship_init(app);
+	else if (key == KC_R)
 	{
-		app->fract.pos = (t_vec3ld){clicked.x + (app->fract.pos.x - clicked.x) / 1.2
-			, clicked.y + (app->fract.pos.y - clicked.y) / 1.2
-			, app->fract.pos.z * 1.2};
+		app->fract.pos = app->fract.origin;
+		app->fract.size = app->fract.base_size;
 		app->fract.size = (t_vec3ld){4 / app->fract.pos.z, 4 / app->fract.pos.z, 0};
-		(*app->fract.f_fractal)(app);
 	}
+	(*app->fract.f_fractal)(app);
 	return (0);
 }
 
-int			event_key_released(int key, void *param)
+void		zoom(t_app *app, t_vec2i pos, float ammount, int isZoomIn)
 {
-	if (key == 53)
-		destroy_app((t_app*)param, EXIT_SUCCESS);
-	return (0);
+	t_vec3ld		clicked;
+
+	if (pos.y < 0)
+		return ;
+	ammount = (isZoomIn ? ammount : 1 / ammount);
+	clicked.x = map_nb(pos.x, (int[2]){0, app->width - 1}
+			, (long double[2]){app->fract.pos.x - app->fract.size.x / 2
+				, app->fract.pos.x + app->fract.size.x / 2});
+	clicked.y = map_nb(pos.y, (int[2]){0, app->height - 1}
+			, (long double[2]){app->fract.pos.y - app->fract.size.y / 2
+				, app->fract.pos.y + app->fract.size.y / 2});
+	app->fract.pos = (t_vec3ld){clicked.x + (app->fract.pos.x - clicked.x) * (1 / ammount)
+			, clicked.y + (app->fract.pos.y - clicked.y) * (1 / ammount)
+		, app->fract.pos.z * ammount};
+	app->fract.size = (t_vec3ld){4 / app->fract.pos.z, 4 / app->fract.pos.z, 0};
+	(*app->fract.f_fractal)(app);
 }

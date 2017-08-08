@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/29 19:44:28 by paperrin          #+#    #+#             */
-/*   Updated: 2017/08/08 21:01:08 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/08/08 23:01:10 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,7 @@
 # include "ft_printf.h"
 # include "ft_math.h"
 # include "mlx.h"
-
-# define X11_KEY_PRESS 2
-# define X11_KEY_RELEASE 3
-# define X11_BUTTON_PRESS 4
-# define X11_BUTTON_RELEASE 5
-# define X11_MOTION_NOTIFY 6
-# define X11_DESTROY_NOTIFY 17
-
-# define X11_NO_EVENT_MASK (0L)
-# define X11_POINTER_MOTION_MASK (1L<<6)
-# define X11_BUTTON_PRESS_MASK (1L<<2)
-# define X11_BUTTON_RELEASE_MASK (1L<<3)
-# define X11_KEY_PRESS_MASK (1L<<0)
-# define X11_KEY_RELEASE_MASK (1L<<1)
+# include "X11.h"
 
 typedef struct		s_mlx_image
 {
@@ -66,9 +53,11 @@ typedef struct		s_fract
 	t_vec3ld			size;
 	int					max_iter;
 	t_complex			c_julia;
+	int					is_burning_ship;
 	t_f_fractal			f_fractal;
 	t_vec3ld			origin;
 	t_vec3ld			base_size;
+	int					mouse_locked;
 }					t_fract;
 
 typedef struct		s_app
@@ -92,16 +81,17 @@ typedef struct		s_thread_arg
 }					t_thread_arg;
 
 void			destroy_app(t_app *app, int exit_code);
-int				event_key_pressed(int key, void *param);
-int				event_key_released(int key, void *param);
+int				event_key_press(int key, void *param);
+int				event_key_release(int key, void *param);
 int				event_key_down(int key, void *param);
-int				event_mouse_pressed(int key, int x, int y, void *param);
-int				event_wheel_down(int key, int x, int y, void *param);
-int				event_wheel_up(int key, int x, int y, void *param);
+int				event_mouse_press(int key, int x, int y, void *param);
+int				event_mouse_release(int key, int x, int y, void *param);
 int				event_mouse_motion(int x, int y, void *param);
 int				event_loop(void *param);
 void			put_pixel(const t_app *app, t_vec2i pos
 		, t_color_rgb rgb);
+
+void			zoom(t_app *app, t_vec2i pos, float ammount, int isZoomIn);
 
 void			core_mandel_julia(t_app *app, t_f_compute_zc f_compute_zc);
 
@@ -112,6 +102,8 @@ void			compute_zc_mandelbrot(t_app *app, t_complex *z, t_complex *c);
 void			fract_julia_init(t_app *app);
 void			fract_julia(t_app *app);
 void			compute_zc_julia(t_app *app, t_complex *z, t_complex *c);
+
+void			fract_burning_ship_init(t_app *app);
 
 long double		map_nb(int value, int input[2], long double output[2]);
 
