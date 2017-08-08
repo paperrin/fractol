@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/29 19:44:28 by paperrin          #+#    #+#             */
-/*   Updated: 2017/08/07 23:18:04 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/08/08 01:13:32 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,26 @@
 # define FRACTOL_H
 
 # include <stdlib.h>
+#include <pthread.h>
 # include "libft.h"
 # include "ft_color.h"
 # include "ft_printf.h"
 # include "ft_math.h"
 # include "mlx.h"
+
+# define X11_KEY_PRESS 2
+# define X11_KEY_RELEASE 3
+# define X11_BUTTON_PRESS 4
+# define X11_BUTTON_RELEASE 5
+# define X11_MOTION_NOTIFY 6
+# define X11_DESTROY_NOTIFY 17
+
+# define X11_NO_EVENT_MASK (0L)
+# define X11_POINTER_MOTION_MASK (1L<<6)
+# define X11_BUTTON_PRESS_MASK (1L<<2)
+# define X11_BUTTON_RELEASE_MASK (1L<<3)
+# define X11_KEY_PRESS_MASK (1L<<0)
+# define X11_KEY_RELEASE_MASK (1L<<1)
 
 typedef struct		s_mlx_image
 {
@@ -70,6 +85,9 @@ int				event_key_pressed(int key, void *param);
 int				event_key_released(int key, void *param);
 int				event_key_down(int key, void *param);
 int				event_mouse_pressed(int key, int x, int y, void *param);
+int				event_wheel_down(int key, int x, int y, void *param);
+int				event_wheel_up(int key, int x, int y, void *param);
+int				event_mouse_motion(int key, int x, int y, void *param);
 int				event_loop(void *param);
 void			put_pixel(const t_app *app, t_vec2i pos
 		, t_color_rgb rgb);

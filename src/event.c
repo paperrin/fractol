@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/29 20:18:42 by paperrin          #+#    #+#             */
-/*   Updated: 2017/08/07 20:15:25 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/08/08 01:13:12 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ int			event_key_down(int key, void *param)
 }
 
 
-#include <stdio.h>
 int			event_mouse_pressed(int key, int x, int y, void *param)
 {
 	t_app		*app;

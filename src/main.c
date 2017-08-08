@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/29 19:42:58 by paperrin          #+#    #+#             */
-/*   Updated: 2017/08/08 00:08:09 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/08/08 01:42:24 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,16 @@ int				main(void)
 	if (!create_app(&app, 800, 800, "Fract'ol paperrin"))
 		return (EXIT_FAILURE);
 	mlx_mouse_hook(app.mlx.win, &event_mouse_pressed, &app);
-	mlx_hook(app.mlx.win, 3, 0, &event_key_released, &app);
-	mlx_hook(app.mlx.win, 2, 3, &event_key_down, &app);
-	mlx_hook(app.mlx.win, );
+	mlx_hook(app.mlx.win, X11_KEY_RELEASE, X11_NO_EVENT_MASK
+			, &event_key_released, &app);
+	mlx_hook(app.mlx.win, X11_KEY_PRESS, X11_NO_EVENT_MASK
+			, &event_key_down, &app);
+	mlx_hook(app.mlx.win, X11_BUTTON_PRESS, X11_BUTTON_PRESS_MASK
+			, &event_wheel_down, &app);
+	mlx_hook(app.mlx.win, X11_BUTTON_RELEASE, X11_BUTTON_RELEASE_MASK
+			, &event_wheel_up, &app);
+	mlx_hook(app.mlx.win, X11_MOTION_NOTIFY, X11_POINTER_MOTION_MASK
+			, &event_mouse_motion, &app);
 	mlx_loop(app.mlx.core);
 	return (EXIT_SUCCESS);
 }
