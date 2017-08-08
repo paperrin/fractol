@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/29 20:18:42 by paperrin          #+#    #+#             */
-/*   Updated: 2017/08/08 01:13:12 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/08/08 21:04:25 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ int			event_key_down(int key, void *param)
 		app->fract.pos.x += speed / app->fract.pos.z;
 	else if (key == 15)
 	{
-		app->fract.pos = ft_vec3ld(-0.6, 0, 1);
-		app->fract.size = ft_vec3ld(4, 4, 0);
+		app->fract.pos = app->fract.origin;
+		app->fract.size = app->fract.base_size;
 	}
 	app->fract.size = (t_vec3ld){4 / app->fract.pos.z, 4 / app->fract.pos.z, 0};
-	fract_mandelbrot(app);
+	(*app->fract.f_fractal)(app);
 	return (0);
 }
 
@@ -58,10 +58,11 @@ int			event_mouse_pressed(int key, int x, int y, void *param)
 				, app->fract.pos.y + app->fract.size.y / 2});
 	if (key == 1)
 	{
-		app->fract.pos = (t_vec3ld){clicked.x + (app->fract.pos.x - clicked.x) / 1.2, clicked.y + (app->fract.pos.y - clicked.y) / 1.2
+		app->fract.pos = (t_vec3ld){clicked.x + (app->fract.pos.x - clicked.x) / 1.2
+			, clicked.y + (app->fract.pos.y - clicked.y) / 1.2
 			, app->fract.pos.z * 1.2};
 		app->fract.size = (t_vec3ld){4 / app->fract.pos.z, 4 / app->fract.pos.z, 0};
-		fract_mandelbrot(app);
+		(*app->fract.f_fractal)(app);
 	}
 	return (0);
 }

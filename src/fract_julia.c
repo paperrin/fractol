@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fract_mandelbrot.c                                 :+:      :+:    :+:   */
+/*   fract_julia.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/08 20:02:45 by paperrin          #+#    #+#             */
-/*   Updated: 2017/08/08 20:59:37 by paperrin         ###   ########.fr       */
+/*   Created: 2017/08/08 19:45:17 by paperrin          #+#    #+#             */
+/*   Updated: 2017/08/08 21:00:17 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void			compute_zc_mandelbrot(t_app *app, t_complex *z, t_complex *c)
+void			compute_zc_julia(t_app *app, t_complex *z, t_complex *c)
 {
 	(void)app;
-	(void)c;
-	z->r = 0;
-	z->i = 0;
+	z->r = c->r;
+	z->i = c->i;
+	c->r = app->fract.c_julia.r;
+	c->i = app->fract.c_julia.i;
 }
 
-void			fract_mandelbrot(t_app *app)
+void			fract_julia(t_app *app)
 {
-	core_mandel_julia(app, &compute_zc_mandelbrot);
+	core_mandel_julia(app, &compute_zc_julia);
 }
 
-void			fract_mandelbrot_init(t_app *app)
+void			fract_julia_init(t_app *app)
 {
-	app->fract.f_fractal = fract_mandelbrot;
-	app->fract.origin = ft_vec3ld(-0.6, 0, 1);
+	app->fract.f_fractal = fract_julia;
+	app->fract.c_julia = (t_complex){-0.8,0.156};
+	app->fract.origin = ft_vec3ld(0, 0, 1);
 	app->fract.base_size = ft_vec3ld(4, 4, 0);
 }

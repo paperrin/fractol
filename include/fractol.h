@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/29 19:44:28 by paperrin          #+#    #+#             */
-/*   Updated: 2017/08/08 01:13:32 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/08/08 21:01:08 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,19 @@ typedef struct		s_complex
 	long double		i;
 }					t_complex;
 
+typedef struct		s_app t_app;
+
+typedef void (*t_f_fractal)(t_app *app);
+
 typedef struct		s_fract
 {
 	t_vec3ld			pos;
 	t_vec3ld			size;
 	int					max_iter;
+	t_complex			c_julia;
+	t_f_fractal			f_fractal;
+	t_vec3ld			origin;
+	t_vec3ld			base_size;
 }					t_fract;
 
 typedef struct		s_app
@@ -73,11 +81,14 @@ typedef struct		s_app
 
 }					t_app;
 
+typedef void (*t_f_compute_zc)(t_app *app, t_complex *z, t_complex *c);
+
 typedef struct		s_thread_arg
 {
-	t_app		*app;
-	t_vec2i		start;
-	t_vec2i		size;
+	t_app			*app;
+	t_vec2i			start;
+	t_vec2i			size;
+	t_f_compute_zc	f_compute_zc;
 }					t_thread_arg;
 
 void			destroy_app(t_app *app, int exit_code);
@@ -87,11 +98,20 @@ int				event_key_down(int key, void *param);
 int				event_mouse_pressed(int key, int x, int y, void *param);
 int				event_wheel_down(int key, int x, int y, void *param);
 int				event_wheel_up(int key, int x, int y, void *param);
-int				event_mouse_motion(int key, int x, int y, void *param);
+int				event_mouse_motion(int x, int y, void *param);
 int				event_loop(void *param);
 void			put_pixel(const t_app *app, t_vec2i pos
 		, t_color_rgb rgb);
+
+void			core_mandel_julia(t_app *app, t_f_compute_zc f_compute_zc);
+
+void			fract_mandelbrot_init(t_app *app);
 void			fract_mandelbrot(t_app *app);
+void			compute_zc_mandelbrot(t_app *app, t_complex *z, t_complex *c);
+
+void			fract_julia_init(t_app *app);
+void			fract_julia(t_app *app);
+void			compute_zc_julia(t_app *app, t_complex *z, t_complex *c);
 
 long double		map_nb(int value, int input[2], long double output[2]);
 

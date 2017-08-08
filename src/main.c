@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/29 19:42:58 by paperrin          #+#    #+#             */
-/*   Updated: 2017/08/08 01:42:24 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/08/08 20:53:12 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static int		create_app(t_app *app, size_t width, size_t height
 			, &(app->draw_buf.bits_per_pixel)
 			, &(app->draw_buf.bytes_width)
 			, &(app->draw_buf.is_big_endian));
+	fract_julia_init(app);
 	event_key_down(15, app);
 	return (1);
 }

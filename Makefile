@@ -6,7 +6,7 @@
 #    By: paperrin <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/29 19:37:35 by paperrin          #+#    #+#              #
-#    Updated: 2017/08/08 02:21:55 by paperrin         ###   ########.fr        #
+#    Updated: 2017/08/08 20:08:37 by paperrin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,9 @@ CFILES		=	main.c				\
 				event2.c			\
 				put_pixel.c			\
 				map_nb.c			\
+				core_mandel_julia.c	\
 				fract_mandelbrot.c	\
+				fract_julia.c		\
 
 HFILES		=	./include/fractol.h
 
