@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/30 14:39:45 by paperrin          #+#    #+#             */
-/*   Updated: 2017/08/07 20:24:44 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/08/09 18:27:04 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void					put_pixel(const t_app *app
 		, t_vec2i pos, t_color_rgb rgb)
 {
 	size_t			index;
-	unsigned int 	color_encoded;
+	unsigned int	color_encoded;
 	int				i;
 
 	color_encoded = get_color(app->mlx.core, rgb);

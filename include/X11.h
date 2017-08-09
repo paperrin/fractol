@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/08 22:24:03 by paperrin          #+#    #+#             */
-/*   Updated: 2017/08/08 23:00:19 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/08/09 16:48:12 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@
 
 # define BC_LEFT 1
 # define BC_RIGHT 2
-# define BC_WHEEL_DOWN 6
-# define BC_WHEEL_UP 7
+# define BC_WHEEL_DOWN 4
+# define BC_WHEEL_UP 5
 
 #endif

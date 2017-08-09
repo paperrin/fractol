@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/07 18:12:05 by paperrin          #+#    #+#             */
-/*   Updated: 2017/08/08 23:06:47 by paperrin         ###   ########.fr       */
+/*   Created: 2017/08/09 18:29:53 by paperrin          #+#    #+#             */
+/*   Updated: 2017/08/09 20:22:26 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,12 @@ void			fract_mandelbrot(t_app *app)
 
 void			fract_mandelbrot_init(t_app *app)
 {
-	app->fract.f_fractal = fract_mandelbrot;
-	app->fract.max_iter = 100;
+	app->fract.f_fractal = &fract_mandelbrot;
+	app->fract.max_iter = 50;
 	app->fract.origin = ft_vec3ld(-.6, 0, 1);
 	app->fract.base_size = ft_vec3ld(4, 4, 0);
 	app->fract.is_burning_ship = 0;
 	app->fract.mouse_locked = 0;
-	event_key_release(KC_R, app);
+	if (app->mlx.core)
+		event_key_release(KC_R, app);
 }

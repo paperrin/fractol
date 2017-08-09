@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/08 00:36:37 by paperrin          #+#    #+#             */
-/*   Updated: 2017/08/08 23:03:15 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/08/09 18:00:38 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ int				event_mouse_press(int key, int x, int y, void *param)
 	t_app	*app;
 
 	app = (t_app*)param;
-	(void)key;
-	(void)x;
-	(void)y;
+	ft_printf("%d\n", key);
 	if (key == BC_LEFT || key == BC_RIGHT
 			|| key == BC_WHEEL_UP || key == BC_WHEEL_DOWN)
 		zoom(app, ft_vec2i(x, y), 1.2, key == BC_LEFT || key == BC_WHEEL_UP);
@@ -50,7 +48,6 @@ int				event_mouse_motion(int x, int y, void *param)
 		y = 0;
 	else if (y >= app->height)
 		y = app->height - 1;
-
 	if (!app->fract.mouse_locked)
 	{
 		app->fract.c_julia.r = (long double)2 / app->width * x - 1;

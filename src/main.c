@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/29 19:42:58 by paperrin          #+#    #+#             */
-/*   Updated: 2017/08/08 23:06:30 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/08/09 20:23:58 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ static int		create_app(t_app *app, size_t width, size_t height
 			, &(app->draw_buf.bits_per_pixel)
 			, &(app->draw_buf.bytes_width)
 			, &(app->draw_buf.is_big_endian));
-	fract_mandelbrot_init(app);
 	event_key_release(KC_R, app);
 	return (1);
 }
@@ -42,22 +41,22 @@ void			destroy_app(t_app *app, int exit_code)
 	exit(exit_code);
 }
 
-int				main(void)
+int				main(int ac, char **av)
 {
 	t_app	app;
 
+	(void)ac;
+	(void)av;
+	app.mlx.core = NULL;
+	if (!parse_args(ac, av, &app))
+		return (EXIT_FAILURE);
 	if (!create_app(&app, 800, 800, "Fract'ol paperrin"))
 		return (EXIT_FAILURE);
-	mlx_hook(app.mlx.win, X11_KEY_RELEASE, X11_NO_EVENT_MASK
-			, &event_key_release, &app);
-	mlx_hook(app.mlx.win, X11_KEY_PRESS, X11_NO_EVENT_MASK
-			, &event_key_down, &app);
-	mlx_hook(app.mlx.win, X11_BUTTON_PRESS, X11_BUTTON_PRESS_MASK
-			, &event_mouse_press, &app);
-	mlx_hook(app.mlx.win, X11_BUTTON_RELEASE, X11_BUTTON_RELEASE_MASK
-			, &event_mouse_release, &app);
-	mlx_hook(app.mlx.win, X11_MOTION_NOTIFY, X11_POINTER_MOTION_MASK
-			, &event_mouse_motion, &app);
+	mlx_hook(app.mlx.win, X11_KEY_RELEASE, 0, &event_key_release, &app);
+	mlx_hook(app.mlx.win, X11_KEY_PRESS, 0, &event_key_down, &app);
+	mlx_hook(app.mlx.win, X11_BUTTON_PRESS, 0, &event_mouse_press, &app);
+	mlx_hook(app.mlx.win, X11_BUTTON_RELEASE, 0, &event_mouse_release, &app);
+	mlx_hook(app.mlx.win, X11_MOTION_NOTIFY, 0, &event_mouse_motion, &app);
 	mlx_loop(app.mlx.core);
 	return (EXIT_SUCCESS);
 }

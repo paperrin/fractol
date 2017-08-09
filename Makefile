@@ -6,7 +6,7 @@
 #    By: paperrin <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/29 19:37:35 by paperrin          #+#    #+#              #
-#    Updated: 2017/08/08 22:51:30 by paperrin         ###   ########.fr        #
+#    Updated: 2017/08/09 20:01:50 by paperrin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,8 @@ CFILES		=	main.c					\
 				core_mandel_julia.c		\
 				fract_mandelbrot.c		\
 				fract_julia.c			\
-				fract_burning_ship.c
+				fract_burning_ship.c	\
+				parse_args.c
 
 HFILES		=	./include/fractol.h			\
 				./include/X11.h
@@ -78,3 +79,19 @@ fclean			:	clean
 						make -C ./libft/ fclean
 
 re				:	fclean all
+
+norm			:
+	@echo "\x1b[35m\n.==================[ \x1b[0m\c"
+	@echo "\x1b[35;1mNormi-Check\x1b[0m\c"
+	@echo " \x1b[35m]==================.\x1b[31;1m"
+	@norminette include/ src/ \
+		| tr "\n" "@" \
+		| sed -e "s/Norme: /$$/g" \
+		| tr "$$" "\n" \
+		| grep -e Error -e Warning \
+		| tr "@" "\n" \
+		| sed "N;$$!P;$$!D;$$d"
+	@echo "\x1b[0m\x1b[35m\c"
+	@echo ".___________________________________________________.\n\x1b[0m"
+
+.PHONY : all, clean, fclean, re, norm

@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/08 22:05:28 by paperrin          #+#    #+#             */
-/*   Updated: 2017/08/08 23:06:50 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/08/09 20:22:41 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,11 @@
 void			fract_burning_ship_init(t_app *app)
 {
 	app->fract.f_fractal = fract_mandelbrot;
-	app->fract.max_iter = 100;
+	app->fract.max_iter = 50;
 	app->fract.origin = ft_vec3ld(-.4, -.6, 1);
 	app->fract.base_size = ft_vec3ld(4, 4, 0);
 	app->fract.is_burning_ship = 1;
 	app->fract.mouse_locked = 0;
-	event_key_release(KC_R, app);
+	if (app->mlx.core)
+		event_key_release(KC_R, app);
 }
