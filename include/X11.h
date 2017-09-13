@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/08 22:24:03 by paperrin          #+#    #+#             */
-/*   Updated: 2017/08/09 16:48:12 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/09/13 10:49:44 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@
 # define X11_KEY_PRESS_MASK (1L<<0)
 # define X11_KEY_RELEASE_MASK (1L<<1)
 
+# define KC_F1 122
+# define KC_F2 120
+
 # define KC_ESCAPE 53
 
 # define KC_1 18
@@ -41,6 +44,8 @@
 # define KC_0 29
 # define KC_ADD 24
 # define KC_SUBTRACT 27
+# define KC_BRACKET_LEFT 33
+# define KC_BRACKET_RIGHT 30
 
 # define KC_W 13
 # define KC_S 1
@@ -66,7 +71,7 @@
 
 # define BC_LEFT 1
 # define BC_RIGHT 2
-# define BC_WHEEL_DOWN 4
+# define BC_WHEEL_DOWN 7
 # define BC_WHEEL_UP 5
 
 #endif

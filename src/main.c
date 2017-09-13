@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/29 19:42:58 by paperrin          #+#    #+#             */
-/*   Updated: 2017/08/09 20:23:58 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/09/13 10:36:22 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ static int		create_app(t_app *app, size_t width, size_t height
 			, &(app->draw_buf.bits_per_pixel)
 			, &(app->draw_buf.bytes_width)
 			, &(app->draw_buf.is_big_endian));
+	app->show_debug = 0;
+	app->show_controls = 0;
 	event_key_release(KC_R, app);
 	return (1);
 }

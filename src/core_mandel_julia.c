@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/08 20:05:18 by paperrin          #+#    #+#             */
-/*   Updated: 2017/08/09 18:55:56 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/09/13 11:30:55 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void		iterate(t_app *app, t_vec2i screen_pos, t_complex c
 		new.i = 2 * old.r * old.i + c.i;
 	}
 	color = ft_color_hsv_to_rgb(
-			ft_color_hsv(360 / app->fract.max_iter * iter, 99
+			ft_color_hsv(360 / 16 * iter % 360, 99
 				, 99 * (iter < app->fract.max_iter)));
 	put_pixel(app, screen_pos, color);
 }

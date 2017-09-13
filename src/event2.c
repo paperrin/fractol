@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/08 00:36:37 by paperrin          #+#    #+#             */
-/*   Updated: 2017/08/09 18:00:38 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/09/13 11:36:58 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int				event_mouse_motion(int x, int y, void *param)
 		y = 0;
 	else if (y >= app->height)
 		y = app->height - 1;
+	app->mouse_pos = ft_vec2i(x, y);
 	if (!app->fract.mouse_locked)
 	{
 		app->fract.c_julia.r = (long double)2 / app->width * x - 1;

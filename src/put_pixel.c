@@ -6,13 +6,13 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/30 14:39:45 by paperrin          #+#    #+#             */
-/*   Updated: 2017/08/09 18:27:04 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/09/13 10:41:43 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static unsigned int		get_color(void *mlx_core, t_color_rgb color)
+unsigned int			get_color(void *mlx_core, t_color_rgb color)
 {
 	int		encoded;
 

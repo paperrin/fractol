@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/29 19:44:28 by paperrin          #+#    #+#             */
-/*   Updated: 2017/08/09 20:15:10 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/09/13 11:36:20 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,9 @@ struct					s_app
 	int				width;
 	int				height;
 	t_fract			fract;
+	int				show_controls;
+	int				show_debug;
+	t_vec2i			mouse_pos;
 };
 
 typedef void			(*t_f_compute_zc)(t_app *app
@@ -82,6 +85,12 @@ typedef struct			s_thread_arg
 	t_vec2i			size;
 	t_f_compute_zc	f_compute_zc;
 }						t_thread_arg;
+
+typedef struct		s_point
+{
+	t_vec2i			pos;
+	t_color_rgb		color;
+}					t_point;
 
 void					destroy_app(t_app *app, int exit_code);
 int						event_key_press(int key, void *param);
@@ -116,6 +125,8 @@ void					error(char *error);
 void					usage(char *error);
 t_f_fractal				init_fractal(t_app *app, char *name, int kc);
 int						parse_args(int ac, char **av, t_app *app);
+unsigned int			get_color(void *mlx_core, t_color_rgb color);
+void					put_info(t_app *app);
 
 long double				map_nb(int value, int input[2], long double output[2]);
 

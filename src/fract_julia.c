@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/08 19:45:17 by paperrin          #+#    #+#             */
-/*   Updated: 2017/08/09 20:22:50 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/09/13 11:07:41 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void			compute_zc_julia(t_app *app, t_complex *z, t_complex *c)
 void			fract_julia(t_app *app)
 {
 	core_mandel_julia(app, &compute_zc_julia);
+	put_info(app);
 }
 
 void			fract_julia_init(t_app *app)

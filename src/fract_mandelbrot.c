@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/09 18:29:53 by paperrin          #+#    #+#             */
-/*   Updated: 2017/08/09 20:22:26 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/09/13 10:34:58 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void			compute_zc_mandelbrot(t_app *app, t_complex *z, t_complex *c)
 void			fract_mandelbrot(t_app *app)
 {
 	core_mandel_julia(app, &compute_zc_mandelbrot);
+	put_info(app);
 }
 
 void			fract_mandelbrot_init(t_app *app)

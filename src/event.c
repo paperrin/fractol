@@ -6,11 +6,18 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/29 20:18:42 by paperrin          #+#    #+#             */
-/*   Updated: 2017/08/09 20:29:12 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/09/13 11:37:27 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+static void	increment_max_iter(t_app * app, int value)
+{
+	if ((app->fract.max_iter > ABS(value) && value < 0)
+			|| (app->fract.max_iter < 350 && value > 0))
+		app->fract.max_iter += value;
+}
 
 int			event_key_down(int key, void *param)
 {
@@ -20,7 +27,7 @@ int			event_key_down(int key, void *param)
 	app = (t_app*)param;
 	speed = 0.2;
 	if (key == KC_ADD || key == KC_SUBTRACT)
-		zoom(app, ft_vec2i(app->width / 2, app->height / 2), 1.2
+		zoom(app, app->mouse_pos, 1.2
 				, key == KC_ADD);
 	else if (key == KC_W)
 		app->fract.pos.y -= speed / app->fract.pos.z;
@@ -30,7 +37,10 @@ int			event_key_down(int key, void *param)
 		app->fract.pos.y += speed / app->fract.pos.z;
 	else if (key == KC_D)
 		app->fract.pos.x += speed / app->fract.pos.z;
+	else if (key == KC_BRACKET_LEFT || key == KC_BRACKET_RIGHT)
+		increment_max_iter(app, key == KC_BRACKET_LEFT ? -25 : 25);
 	(*app->fract.f_fractal)(app);
+	ft_printf("%d\n", key);
 	return (0);
 }
 
@@ -52,6 +62,10 @@ int			event_key_release(int key, void *param)
 		app->fract.size = (t_vec3ld){4 / app->fract.pos.z
 			, 4 / app->fract.pos.z, 0};
 	}
+	else if (key == KC_F1)
+		app->show_debug = !app->show_debug;
+	else if (key == KC_F2)
+		app->show_controls = !app->show_controls;
 	(*app->fract.f_fractal)(app);
 	return (0);
 }
