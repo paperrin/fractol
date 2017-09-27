@@ -6,7 +6,7 @@
 #    By: paperrin <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/29 19:37:35 by paperrin          #+#    #+#              #
-#    Updated: 2017/09/13 10:36:41 by paperrin         ###   ########.fr        #
+#*   Updated: 2017/09/25 21:38:15 by paperrin         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,8 +45,10 @@ CFILES		=	main.c					\
 				fract_mandelbrot.c		\
 				fract_julia.c			\
 				fract_burning_ship.c	\
+				fract_tree.c			\
 				parse_args.c			\
-				put_info.c
+				put_info.c				\
+				clear_image.c
 
 HFILES		=	./include/fractol.h			\
 				./include/X11.h

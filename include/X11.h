@@ -71,7 +71,7 @@
 
 # define BC_LEFT 1
 # define BC_RIGHT 2
-# define BC_WHEEL_DOWN 7
+# define BC_WHEEL_DOWN 4
 # define BC_WHEEL_UP 5
 
 #endif

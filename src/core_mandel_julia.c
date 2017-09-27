@@ -33,7 +33,7 @@ static void		iterate(t_app *app, t_vec2i screen_pos, t_complex c
 		new.i = 2 * old.r * old.i + c.i;
 	}
 	color = ft_color_hsv_to_rgb(
-			ft_color_hsv(360 / 16 * iter % 360, 99
+			ft_color_hsv(360 / app->fract.max_iter * iter % 360, 99
 				, 99 * (iter < app->fract.max_iter)));
 	put_pixel(app, screen_pos, color);
 }

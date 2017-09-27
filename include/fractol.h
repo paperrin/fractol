@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/29 19:44:28 by paperrin          #+#    #+#             */
-/*   Updated: 2017/09/13 11:36:20 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/09/27 02:15:22 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,9 @@
 # include "ft_color.h"
 # include "ft_printf.h"
 # include "ft_math.h"
+# include "ft_array.h"
 # include "mlx.h"
-# include "x11.h"
+# include "X11.h"
 
 # define SCREEN_DIV 5
 
@@ -121,12 +122,16 @@ void					compute_zc_julia(t_app *app
 
 void					fract_burning_ship_init(t_app *app);
 
+void					fract_tree_init(t_app *app);
+void					fract_tree(t_app *app);
+
 void					error(char *error);
 void					usage(char *error);
 t_f_fractal				init_fractal(t_app *app, char *name, int kc);
 int						parse_args(int ac, char **av, t_app *app);
 unsigned int			get_color(void *mlx_core, t_color_rgb color);
 void					put_info(t_app *app);
+void					clear_image(t_app *app, unsigned int color);
 
 long double				map_nb(int value, int input[2], long double output[2]);
 

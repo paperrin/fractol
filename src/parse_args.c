@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/09 18:50:10 by paperrin          #+#    #+#             */
-/*   Updated: 2017/08/09 20:30:34 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/09/23 11:21:10 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,12 @@ void			usage(char *error)
 
 t_f_fractal		init_fractal(t_app *app, char *name, int kc)
 {
-	static const int		size = 3 * 3;
+	static const int		size = 4 * 3;
 	static void				*fractals[size] = {
 		(void*)"mandelbrot", (void*)KC_1, (void*)&fract_mandelbrot_init,
 		(void*)"julia", (void*)KC_2, (void*)&fract_julia_init,
-		(void*)"burning_ship", (void*)KC_3, (void*)&fract_burning_ship_init};
+		(void*)"burning_ship", (void*)KC_3, (void*)&fract_burning_ship_init,
+		(void*)"tree", (void*)KC_4, (void*)&fract_tree_init};
 	t_f_fractal				f_fractal;
 	int						i;
 

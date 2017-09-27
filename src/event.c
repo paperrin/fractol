@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/29 20:18:42 by paperrin          #+#    #+#             */
-/*   Updated: 2017/09/13 11:37:27 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/09/22 19:28:56 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int			event_key_release(int key, void *param)
 		destroy_app((t_app*)param, EXIT_SUCCESS);
 	else if (key == KC_L)
 		app->fract.mouse_locked = !app->fract.mouse_locked;
-	else if (key == KC_1 || key == KC_2 || key == KC_3)
+	else if (key == KC_1 || key == KC_2 || key == KC_3 || key == KC_4)
 		init_fractal(app, NULL, key);
 	else if (key == KC_R)
 	{
