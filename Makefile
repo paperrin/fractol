@@ -6,7 +6,7 @@
 #    By: paperrin <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/29 19:37:35 by paperrin          #+#    #+#              #
-#*   Updated: 2017/09/25 21:38:15 by paperrin         ###   ########.fr       *#
+#*   Updated: 2017/09/30 02:28:53 by paperrin         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,13 +59,15 @@ OBJ			=	$(CFILES:%.c=$(OBJ_DIR)%.o)
 
 # # # # #
 
-all				:	$(NAME)
+all				:	libs $(NAME)
 
-$(NAME)			:	$(OBJ) $(HFILES)
-						make -C ./mlx/
-						make -C ./libft/
+$(NAME)			:	$(OBJ) $(HFILES) ./libft/libft.a
 						$(CC) $(OBJ) -o $@ $(LIB_PARAMS) $(LIBS) \
 							-framework OpenGL -framework Appkit
+
+libs			:
+						make -C ./mlx/
+						make -C ./libft/
 
 $(OBJ_DIR)%.o	:	$(SRC_DIR)%.c
 						mkdir -p $(OBJ_DIR)

@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/29 19:44:28 by paperrin          #+#    #+#             */
-/*   Updated: 2017/09/27 02:15:22 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/09/29 23:48:09 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include "ft_printf.h"
 # include "ft_math.h"
 # include "ft_array.h"
+# include "ft_graph.h"
 # include "mlx.h"
 # include "X11.h"
 
@@ -101,8 +102,8 @@ int						event_mouse_press(int key, int x, int y, void *param);
 int						event_mouse_release(int key, int x, int y, void *param);
 int						event_mouse_motion(int x, int y, void *param);
 int						event_loop(void *param);
-void					put_pixel(const t_app *app, t_vec2i pos
-		, t_color_rgb rgb);
+void					put_pixel(t_vec3f pos, t_color_rgb rgb
+	, void *app);
 
 void					zoom(t_app *app, t_vec2i pos, float ammount
 		, int is_zoom_in);

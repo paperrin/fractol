@@ -6,7 +6,7 @@
 /*   By: paperrin <paperrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/22 19:23:31 by paperrin          #+#    #+#             */
-/*   Updated: 2017/09/27 03:47:14 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/09/30 00:53:23 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,44 +15,30 @@
 
 void		fract_tree(t_app *app)
 {
+	const size_t	n = 4;
+	t_vec3f			v[n];
+	t_color_rgb		c[n];
+	t_array			*edge_table;
+
+	v[0] = ft_vec3f(5, 5, 0);	c[0] = ft_color_rgb(255, 255, 255);
+	v[1] = ft_vec3f(50, 5, 0);	c[0] = ft_color_rgb(255, 255, 255);
+	v[2] = ft_vec3f(100, 100, 0);	c[0] = ft_color_rgb(255, 255, 255);
+	v[3] = ft_vec3f(5, 100, 0);	c[0] = ft_color_rgb(255, 255, 255);
+	if (!(edge_table = ft_graph_create_edge_table(v, c, n)))
+		exit(1);
+
 	clear_image(app, get_color(app->draw_buf.image, ft_color_rgb(0, 0, 0)));
+
+	if (!ft_graph_poly_fill(edge_table, &put_pixel, (void*)app))
+		exit(1);
+
 	mlx_put_image_to_window(app->mlx.core, app->mlx.win
 			, app->draw_buf.image, 0, 0);
-}
-
-void		if_error(void *ptr)
-{
-	if (!ptr)
-		printf("ERROR\n");
-}
-
-void		print_array(t_array *array)
-{
-	t_array_it		i;
-
-	printf("array[%ld]: ", array->size);
-	i = array->begin;
-	while (i < array->end)
-	{
-		printf("%d, ", (int)*i);
-		i++;
-	}
-	printf("\n");
 }
 
 void		fract_tree_init(t_app *app)
 {
 	app->fract.f_fractal = &fract_tree;
-
-	t_array		array;
-
-	array = ft_array_init(NULL);
-
-	ft_array_push_back(&array, (void*)1);
-	ft_array_push_back(&array, (void*)3);
-	ft_array_push_front(&array, (void*)0);
-	ft_array_add(&array, 2, (void*)2);
-	print_array(&array);
 }
 
 
