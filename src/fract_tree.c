@@ -6,24 +6,26 @@
 /*   By: paperrin <paperrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/22 19:23:31 by paperrin          #+#    #+#             */
-/*   Updated: 2017/09/30 00:53:23 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/09/30 04:37:16 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include <stdio.h>
 
 void		fract_tree(t_app *app)
 {
-	const size_t	n = 4;
+	const size_t	n = 3;
 	t_vec3f			v[n];
 	t_color_rgb		c[n];
 	t_array			*edge_table;
 
-	v[0] = ft_vec3f(5, 5, 0);	c[0] = ft_color_rgb(255, 255, 255);
-	v[1] = ft_vec3f(50, 5, 0);	c[0] = ft_color_rgb(255, 255, 255);
-	v[2] = ft_vec3f(100, 100, 0);	c[0] = ft_color_rgb(255, 255, 255);
-	v[3] = ft_vec3f(5, 100, 0);	c[0] = ft_color_rgb(255, 255, 255);
+	int		h;
+
+	h = app->height - 100;
+
+	v[0] = ft_vec3f(app->width / 2, 50, 0);	c[0] = ft_color_rgb(255, 0, 0);
+	v[1] = ft_vec3f(app->width / 2 + h / 2, 50 + h, 0);	c[1] = ft_color_rgb(0, 255, 0);
+	v[2] = ft_vec3f(app->width / 2 - h / 2, 50 + h, 0);	c[2] = ft_color_rgb(0, 0, 255);
 	if (!(edge_table = ft_graph_create_edge_table(v, c, n)))
 		exit(1);
 
