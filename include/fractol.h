@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/29 19:44:28 by paperrin          #+#    #+#             */
-/*   Updated: 2017/09/29 23:48:09 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/10/04 11:11:38 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <pthread.h>
 # include <stdio.h>
+# include <math.h>
 # include "libft.h"
 # include "ft_color.h"
 # include "ft_printf.h"
@@ -69,6 +70,7 @@ struct					s_app
 {
 	t_mlx			mlx;
 	t_mlx_image		draw_buf;
+	t_graph_env		g;
 	int				width;
 	int				height;
 	t_fract			fract;

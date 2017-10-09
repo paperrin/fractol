@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/29 19:42:58 by paperrin          #+#    #+#             */
-/*   Updated: 2017/09/30 04:35:31 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/10/09 06:06:10 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int				main(int ac, char **av)
 	app.mlx.core = NULL;
 	if (!parse_args(ac, av, &app))
 		return (EXIT_FAILURE);
-	if (!create_app(&app, 800, 480, "Fract'ol paperrin"))
+	if (!create_app(&app, 1200, 720, "Fract'ol paperrin"))
 		return (EXIT_FAILURE);
 	mlx_hook(app.mlx.win, X11_KEY_RELEASE, 0, &event_key_release, &app);
 	mlx_hook(app.mlx.win, X11_KEY_PRESS, 0, &event_key_down, &app);
