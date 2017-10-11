@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/08 00:36:37 by paperrin          #+#    #+#             */
-/*   Updated: 2017/09/13 11:36:58 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/10/11 15:50:39 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,10 @@ int				event_mouse_motion(int x, int y, void *param)
 	app->mouse_pos = ft_vec2i(x, y);
 	if (!app->fract.mouse_locked)
 	{
-		app->fract.c_julia.r = (long double)2 / app->width * x - 1;
-		app->fract.c_julia.i = (long double)2 / app->height * y - 1;
+		app->fract.c_julia.r = (long double)2 / app->width * x;
+		app->fract.c_julia.i = (long double)2 / app->height * y;
+		app->fract.d_tree = M_PI * 2 / app->width * x - M_PI;
+		app->fract.a_tree = M_PI / app->height * y;
 		(*app->fract.f_fractal)(app);
 	}
 	return (0);

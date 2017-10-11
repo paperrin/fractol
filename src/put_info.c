@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/13 10:32:04 by paperrin          #+#    #+#             */
-/*   Updated: 2017/09/13 11:04:55 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/10/11 16:35:17 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,47 +30,65 @@ static void		put_string_to_screen(t_app *app, t_point point, char *str)
 	ft_strsplit_free(str_lines);
 }
 
-static char		*get_debug_string(int should_print)
+static char		*get_debug_string(t_app *app)
 {
-	if (!should_print)
-		return ("<F1> DEBUG\n");
+	char	*str;
+
+	if (!app->show_debug)
+		str = ft_strdup("<F1> DEBUG\n");
 	else
-		return (
-		"<F1> DEBUG ------------------------\n \n"
-		" Iterations: %4d\n \n");
+	{
+		if (app->f_debug_str)
+			str = (*app->f_debug_str)((void*)app);
+		else
+		{
+			ft_asprintf(&str
+				, "<F1> DEBUG ------------------------\n \n"
+					" Iterations: %4d\n \n"
+				, app->fract.nb_iter);
+		}
+	}
+	return (str);
 }
 
-static char		*get_controls_string(int should_print)
+static char		*get_controls_string(t_app *app)
 {
-	if (!should_print)
+	if (!app->show_controls)
 		return ("<F2> CONTROLS");
 	else
-		return (
-		"<F2> CONTROLS ---------------------\n \n"
-		" Change fractal: number keys 1 to 3\n"
-		" Move: <UP> <DOWN> <LEFT> <RIGHT>\n"
-		" Fractal parameter (option): mouse movement\n"
-		" Lock/Unlock fractal parameter: L\n"
-		" Zoom: + & -\n"
-		" Change iterations: [ & ]\n"
-		" Reset view: R\n"
-		" Quit: <ESC>");
+	{
+		if (app->f_controls_str)
+			return ((*app->f_controls_str)());
+		else
+		{
+			return (
+			"<F2> CONTROLS ---------------------\n \n"
+			" Change fractal: number keys 1 to 4\n"
+			" Move: <UP> <DOWN> <LEFT> <RIGHT>\n"
+			" Fractal parameter (option): mouse movement\n"
+			" Lock/Unlock fractal parameter: L\n"
+			" Zoom: + & -\n"
+			" Change iterations: [ & ]\n"
+			" Reset view: R\n"
+			" Quit: <ESC>");
+		}
+	}
 }
 
 void			put_info(t_app *app)
 {
 	t_point		point;
+	char		*debug_str;
 	char		*str;
-	char		*format;
 
-	format = ft_strjoin(get_debug_string(app->show_debug)
-			, get_controls_string(app->show_controls));
-	if (!format)
+	if (!(debug_str = get_debug_string(app)))
 		return ;
-	ft_asprintf(&str, format, app->fract.max_iter);
-	free(format);
+	str = ft_strjoin(debug_str, get_controls_string(app));
 	if (!str)
+	{
+		free(debug_str);
 		return ;
+	}
 	point.pos = ft_vec2i(7, 2);
 	point.color = ft_color_rgb(0, 0, 0);
 	put_string_to_screen(app, point, str);

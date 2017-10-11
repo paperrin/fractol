@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/09 18:29:53 by paperrin          #+#    #+#             */
-/*   Updated: 2017/09/13 10:34:58 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/10/11 16:44:13 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,11 @@ void			fract_mandelbrot(t_app *app)
 void			fract_mandelbrot_init(t_app *app)
 {
 	app->fract.f_fractal = &fract_mandelbrot;
-	app->fract.max_iter = 50;
+	app->f_debug_str = NULL;
+	app->f_controls_str = NULL;
+	app->fract.nb_iter = 50;
+	app->fract.iter_step = 25;
+	app->fract.max_iter = 300;
 	app->fract.origin = ft_vec3ld(-.6, 0, 1);
 	app->fract.base_size = ft_vec3ld(4, 4, 0);
 	app->fract.is_burning_ship = 0;

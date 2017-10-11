@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/29 19:42:58 by paperrin          #+#    #+#             */
-/*   Updated: 2017/10/09 06:06:10 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/10/11 16:20:34 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ static int		create_app(t_app *app, size_t width, size_t height
 			, &(app->draw_buf.bits_per_pixel)
 			, &(app->draw_buf.bytes_width)
 			, &(app->draw_buf.is_big_endian));
+	if (!(app->draw_buf.colors = (t_color_rgb*)ft_memalloc(
+		sizeof(t_color_rgb) * width * height)))
+		destroy_app(app, EXIT_FAILURE);
 	app->show_debug = 0;
 	app->show_controls = 0;
 	event_key_release(KC_R, app);
@@ -50,9 +53,11 @@ int				main(int ac, char **av)
 	(void)ac;
 	(void)av;
 	app.mlx.core = NULL;
+	app.f_debug_str = NULL;
+	app.f_controls_str = NULL;
 	if (!parse_args(ac, av, &app))
 		return (EXIT_FAILURE);
-	if (!create_app(&app, 1200, 720, "Fract'ol paperrin"))
+	if (!create_app(&app, 1200, 700, "Fract'ol paperrin"))
 		return (EXIT_FAILURE);
 	mlx_hook(app.mlx.win, X11_KEY_RELEASE, 0, &event_key_release, &app);
 	mlx_hook(app.mlx.win, X11_KEY_PRESS, 0, &event_key_down, &app);

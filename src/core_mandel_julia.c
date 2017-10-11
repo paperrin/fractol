@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/08 20:05:18 by paperrin          #+#    #+#             */
-/*   Updated: 2017/09/30 00:05:28 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/10/11 16:35:03 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,38 @@ static void		iterate(t_app *app, t_vec2i screen_pos, t_complex c
 {
 	t_complex		old;
 	t_complex		new;
-	t_color_rgb		color;
+	t_complex		sq;
+	//t_color_rgb		color;
 	int				iter;
 
 	f_compute_zc(app, &new, &c);
 	iter = -1;
-	while (++iter < app->fract.max_iter)
+	while (++iter < app->fract.nb_iter)
 	{
 		if (app->fract.is_burning_ship)
 			new = (t_complex){fabs((double)new.r), fabs((double)new.i)};
 		old = new;
-		if ((old.r * old.r + old.i * old.i) > 4)
+		sq.r = old.r * old.r;
+		sq.i = old.i * old.i;
+		if ((sq.r + sq.i) > 4)
 			break ;
-		new.r = old.r * old.r - old.i * old.i + c.r;
+		new.r = sq.r - sq.i + c.r;
 		new.i = 2 * old.r * old.i + c.i;
 	}
+	/*
 	color = ft_color_hsv_to_rgb(
-			ft_color_hsv(360 / app->fract.max_iter * iter % 360, 99
-				, 99 * (iter < app->fract.max_iter)));
-	put_pixel(ft_vec3f(screen_pos.x, screen_pos.y, 0), color, (void*)app);
+			ft_color_hsv(360 / app->fract.nb_iter * iter % 360, 99
+				, 99 * (iter < app->fract.nb_iter)));
+	put_pixel(ft_vec3f(screen_pos.x, screen_pos.y, 0)
+		, color
+		, (void*)app);
+	//*/
+	//*
+	put_pixel(ft_vec3f(screen_pos.x, screen_pos.y, 0)
+		, iter == app->fract.nb_iter ? ft_color_rgb(0, 0, 0)
+			: ft_color_rgba_to_rgb(app->fract.colors[iter % app->fract.nb_colors])
+		, (void*)app);
+	//*/
 }
 
 static void		*render_section(void *arg_v)

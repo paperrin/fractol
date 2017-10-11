@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/29 19:44:28 by paperrin          #+#    #+#             */
-/*   Updated: 2017/10/04 11:11:38 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/10/11 17:36:46 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,12 @@
 
 typedef struct			s_mlx_image
 {
-	void	*image;
-	char	*pixels;
-	int		bits_per_pixel;
-	int		bytes_width;
-	int		is_big_endian;
+	void			*image;
+	char			*pixels;
+	t_color_rgb		*colors;
+	int				bits_per_pixel;
+	int				bytes_width;
+	int				is_big_endian;
 }						t_mlx_image;
 
 typedef struct			s_mlx
@@ -58,12 +59,23 @@ typedef struct			s_fract
 	t_vec3ld		pos;
 	t_vec3ld		size;
 	int				max_iter;
+	int				nb_iter;
+	int				iter_step;
 	t_complex		c_julia;
+	float			a_tree;
+	float			d_tree;
 	int				is_burning_ship;
 	t_f_fractal		f_fractal;
 	t_vec3ld		origin;
 	t_vec3ld		base_size;
 	int				mouse_locked;
+	t_color_rgba	*colors;
+	int				nb_colors;
+	int				nb_branches;
+	int				trunk_height;
+	int				trunk_width;
+	float			branch_width;
+	t_vec2i			trunk_offset;
 }						t_fract;
 
 struct					s_app
@@ -76,6 +88,8 @@ struct					s_app
 	t_fract			fract;
 	int				show_controls;
 	int				show_debug;
+	char			*(*f_debug_str)(t_app *app);
+	char			*(*f_controls_str)();
 	t_vec2i			mouse_pos;
 };
 
@@ -106,6 +120,8 @@ int						event_mouse_motion(int x, int y, void *param);
 int						event_loop(void *param);
 void					put_pixel(t_vec3f pos, t_color_rgb rgb
 	, void *app);
+void					put_pixel_rgba(t_vec3f pos, t_color_rgba rgb
+	, void *app);
 
 void					zoom(t_app *app, t_vec2i pos, float ammount
 		, int is_zoom_in);
@@ -134,7 +150,7 @@ t_f_fractal				init_fractal(t_app *app, char *name, int kc);
 int						parse_args(int ac, char **av, t_app *app);
 unsigned int			get_color(void *mlx_core, t_color_rgb color);
 void					put_info(t_app *app);
-void					clear_image(t_app *app, unsigned int color);
+void					clear_image(t_app *app, t_color_rgb color);
 
 long double				map_nb(int value, int input[2], long double output[2]);
 

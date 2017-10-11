@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/09 18:50:10 by paperrin          #+#    #+#             */
-/*   Updated: 2017/09/23 11:21:10 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/10/11 16:13:05 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void			usage(char *error)
 		ft_putstr_fd("error: ", STDOUT_FILENO);
 		ft_putendl_fd(error, STDOUT_FILENO);
 	}
-	ft_putstr("usage: ./fractol [mandelbrot|julia|burning_ship]\n");
+	ft_putstr("usage: ./fractol [mandelbrot|julia|burning_ship|tree]\n");
 	exit(EXIT_FAILURE);
 }
 
@@ -62,9 +62,6 @@ t_f_fractal		init_fractal(t_app *app, char *name, int kc)
 
 int				parse_args(int ac, char **av, t_app *app)
 {
-	(void)ac;
-	(void)av;
-	(void)app;
 	if (ac > 1)
 	{
 		if (!init_fractal(app, av[1], -1))

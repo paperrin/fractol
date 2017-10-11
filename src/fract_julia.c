@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/08 19:45:17 by paperrin          #+#    #+#             */
-/*   Updated: 2017/09/13 11:07:41 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/10/11 16:44:20 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,11 @@ void			fract_julia(t_app *app)
 void			fract_julia_init(t_app *app)
 {
 	app->fract.f_fractal = fract_julia;
-	app->fract.max_iter = 50;
+	app->f_debug_str = NULL;
+	app->f_controls_str = NULL;
+	app->fract.nb_iter = 50;
+	app->fract.iter_step = 25;
+	app->fract.max_iter = 300;
 	app->fract.origin = ft_vec3ld(0, 0, 1);
 	app->fract.c_julia = (t_complex){0, 0};
 	app->fract.origin = ft_vec3ld(0, 0, 1);
