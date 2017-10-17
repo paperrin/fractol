@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/08 20:05:18 by paperrin          #+#    #+#             */
-/*   Updated: 2017/10/11 16:35:03 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/10/12 13:20:03 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ static void		iterate(t_app *app, t_vec2i screen_pos, t_complex c
 	t_complex		old;
 	t_complex		new;
 	t_complex		sq;
-	//t_color_rgb		color;
 	int				iter;
 
 	f_compute_zc(app, &new, &c);
@@ -33,22 +32,14 @@ static void		iterate(t_app *app, t_vec2i screen_pos, t_complex c
 		if ((sq.r + sq.i) > 4)
 			break ;
 		new.r = sq.r - sq.i + c.r;
-		new.i = 2 * old.r * old.i + c.i;
+		new.i = (old.r + old.i) * (old.r + old.i) - sq.r - sq.i;
+		new.i += c.i;
 	}
-	/*
-	color = ft_color_hsv_to_rgb(
-			ft_color_hsv(360 / app->fract.nb_iter * iter % 360, 99
-				, 99 * (iter < app->fract.nb_iter)));
-	put_pixel(ft_vec3f(screen_pos.x, screen_pos.y, 0)
-		, color
-		, (void*)app);
-	//*/
-	//*
 	put_pixel(ft_vec3f(screen_pos.x, screen_pos.y, 0)
 		, iter == app->fract.nb_iter ? ft_color_rgb(0, 0, 0)
-			: ft_color_rgba_to_rgb(app->fract.colors[iter % app->fract.nb_colors])
+			: ft_color_rgba_to_rgb(app->fract.colors[iter
+				% app->fract.nb_colors])
 		, (void*)app);
-	//*/
 }
 
 static void		*render_section(void *arg_v)

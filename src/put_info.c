@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/13 10:32:04 by paperrin          #+#    #+#             */
-/*   Updated: 2017/10/11 16:35:17 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/10/16 12:34:27 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ static char		*get_debug_string(t_app *app)
 		{
 			ft_asprintf(&str
 				, "<F1> DEBUG ------------------------\n \n"
-					" Iterations: %4d\n \n"
+					" Iterations: %4d\n"
+					" \n"
 				, app->fract.nb_iter);
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/08 19:45:17 by paperrin          #+#    #+#             */
-/*   Updated: 2017/10/11 16:44:20 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/10/12 13:20:07 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void			fract_julia_init(t_app *app)
 	app->fract.base_size = ft_vec3ld(4, 4, 0);
 	app->fract.is_burning_ship = 0;
 	app->fract.mouse_locked = 0;
+	create_palette(app, app->fract.nb_iter);
 	if (app->mlx.core)
 		event_key_release(KC_R, app);
 }

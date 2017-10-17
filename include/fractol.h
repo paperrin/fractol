@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/29 19:44:28 by paperrin          #+#    #+#             */
-/*   Updated: 2017/10/11 17:36:46 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/10/12 13:07:31 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ void					put_pixel(t_vec3f pos, t_color_rgb rgb
 	, void *app);
 void					put_pixel_rgba(t_vec3f pos, t_color_rgba rgb
 	, void *app);
+void					create_palette(t_app *app, int n);
 
 void					zoom(t_app *app, t_vec2i pos, float ammount
 		, int is_zoom_in);

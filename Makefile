@@ -6,7 +6,7 @@
 #    By: paperrin <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/29 19:37:35 by paperrin          #+#    #+#              #
-#*   Updated: 2017/10/11 15:50:29 by paperrin         ###   ########.fr       *#
+#*   Updated: 2017/10/12 09:52:34 by paperrin         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,8 @@ CFILES		=	main.c					\
 				fract_tree.c			\
 				parse_args.c			\
 				put_info.c				\
-				clear_image.c
+				clear_image.c			\
+				create_palette.c
 
 HFILES		=	./include/fractol.h			\
 				./include/X11.h

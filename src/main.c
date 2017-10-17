@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/29 19:42:58 by paperrin          #+#    #+#             */
-/*   Updated: 2017/10/11 16:20:34 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/10/12 13:20:02 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int				main(int ac, char **av)
 
 	(void)ac;
 	(void)av;
+	app.fract.colors = NULL;
 	app.mlx.core = NULL;
 	app.f_debug_str = NULL;
 	app.f_controls_str = NULL;

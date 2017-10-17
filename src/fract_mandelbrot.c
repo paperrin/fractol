@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/09 18:29:53 by paperrin          #+#    #+#             */
-/*   Updated: 2017/10/11 16:44:13 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/10/12 13:20:08 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void			fract_mandelbrot_init(t_app *app)
 	app->fract.base_size = ft_vec3ld(4, 4, 0);
 	app->fract.is_burning_ship = 0;
 	app->fract.mouse_locked = 0;
+	create_palette(app, app->fract.nb_iter);
 	if (app->mlx.core)
 		event_key_release(KC_R, app);
 }

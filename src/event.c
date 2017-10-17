@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/29 20:18:42 by paperrin          #+#    #+#             */
-/*   Updated: 2017/10/11 18:12:38 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/10/12 13:29:38 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@ static void	increment_max_iter(t_app * app, int inc)
 {
 	if ((app->fract.nb_iter > ABS(inc) && inc < 0)
 			|| (app->fract.nb_iter < app->fract.max_iter && inc > 0))
+	{
 		app->fract.nb_iter += inc;
+		create_palette(app, app->fract.nb_iter);
+	}
 }
 
 static void	move_action(t_app *app, t_vec2i sign)
