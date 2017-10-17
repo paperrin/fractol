@@ -6,7 +6,7 @@
 /*   By: paperrin <paperrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 21:36:56 by paperrin          #+#    #+#             */
-/*   Updated: 2017/10/11 15:50:33 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/10/17 19:53:50 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void			clear_image(t_app *app, t_color_rgb color)
 	int				i;
 	int				j;
 
+	if (!app->draw_buf.image)
+		return ;
 	encoded = get_color(app->draw_buf.image, color);
 	j = -1;
 	while (++j * 4 < app->draw_buf.bytes_width * app->height)

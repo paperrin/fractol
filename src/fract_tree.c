@@ -6,7 +6,7 @@
 /*   By: paperrin <paperrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/22 19:23:31 by paperrin          #+#    #+#             */
-/*   Updated: 2017/10/12 13:05:46 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/10/17 19:58:47 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,13 @@ static char		*get_controls_str()
 {
 	return (
 	"<F2> CONTROLS ---------------------\n \n"
-	" Change fractal: number keys 1 to 4\n"
-	" Move: <UP> <DOWN> <LEFT> <RIGHT>\n"
+	" Change fractal: number keys 1 to 5\n"
+	" Move: W A S D\n"
 	" Fractal parameter (option): mouse movement\n"
 	" Lock/Unlock fractal parameter: L\n"
+	" Increase tree size: + & -\n"
 	" Change iterations: [ & ]\n"
+	" Reset view: R\n"
 	" Quit: <ESC>");
 }
 
@@ -93,8 +95,8 @@ void			fract_tree_init(t_app *app)
 	app->fract.nb_iter = 10;
 	app->fract.iter_step = 1;
 	app->fract.max_iter = 15;
-	app->fract.trunk_offset = ft_vec2i(0, 0);
-	app->fract.trunk_height = 90;
+	app->fract.trunk_offset = ft_vec2i(0, -200);
+	app->fract.trunk_height = 50;
 	app->fract.trunk_width = 5;
 	app->fract.mouse_locked = 0;
 	ft_graph_env_init(&app->g, &put_pixel, &put_pixel_rgba, app);

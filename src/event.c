@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/29 20:18:42 by paperrin          #+#    #+#             */
-/*   Updated: 2017/10/12 13:29:38 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/10/17 19:52:47 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ int			event_key_release(int key, void *param)
 		destroy_app((t_app*)param, EXIT_SUCCESS);
 	else if (key == KC_L)
 		app->fract.mouse_locked = !app->fract.mouse_locked;
-	else if (key == KC_1 || key == KC_2 || key == KC_3 || key == KC_4)
+	else if (key == KC_1 || key == KC_2 || key == KC_3
+		|| key == KC_4 || key == KC_5)
 		init_fractal(app, NULL, key);
 	else if (key == KC_R)
 	{
@@ -68,8 +69,8 @@ int			event_key_release(int key, void *param)
 			fract_tree_init(app);
 		app->fract.pos = app->fract.origin;
 		app->fract.size = app->fract.base_size;
-		app->fract.size = (t_vec3ld){4 / app->fract.pos.z
-			, 4 / app->fract.pos.z, 0};
+		app->fract.size = (t_vec3ld){app->fract.base_size.x / app->fract.pos.z
+			, app->fract.base_size.y / app->fract.pos.z, 0};
 	}
 	else if (key == KC_F1)
 		app->show_debug = !app->show_debug;
@@ -97,7 +98,8 @@ void		zoom(t_app *app, t_vec2i pos, float ammount, int is_zoom_in)
 		app->fract.pos = (t_vec3ld){clicked.x + (app->fract.pos.x - clicked.x)
 			* (1 / ammount), clicked.y + (app->fract.pos.y - clicked.y)
 				* (1 / ammount), app->fract.pos.z * ammount};
-		app->fract.size = (t_vec3ld){4 / app->fract.pos.z, 4 / app->fract.pos.z, 0};
+		app->fract.size = (t_vec3ld){app->fract.base_size.x / app->fract.pos.z
+			, app->fract.base_size.y / app->fract.pos.z, 0};
 	}
 	(*app->fract.f_fractal)(app);
 }

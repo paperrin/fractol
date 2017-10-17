@@ -6,7 +6,7 @@
 /*   By: paperrin <paperrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 09:44:59 by paperrin          #+#    #+#             */
-/*   Updated: 2017/10/12 13:10:50 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/10/17 20:37:01 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	create_palette(t_app *app, int n)
 	i = -1;
 	while (++i < n)
 	{
-		rgb = ft_color_hsv_to_rgb(ft_color_hsv(360 / n * i, 89, 80));
+		rgb = ft_color_hsv_to_rgb(ft_color_hsv(360 / n * i, 85, 99));
 		app->fract.colors[i] = ft_color_rgba(rgb.r, rgb.g, rgb.b, 1);
 	}
 }

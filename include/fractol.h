@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/29 19:44:28 by paperrin          #+#    #+#             */
-/*   Updated: 2017/10/12 13:07:31 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/10/17 19:43:49 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,9 @@ void					fract_julia_init(t_app *app);
 void					fract_julia(t_app *app);
 void					compute_zc_julia(t_app *app
 		, t_complex *z, t_complex *c);
+
+void					fract_tricorn_init(t_app *app);
+void					fract_tricorn(t_app *app);
 
 void					fract_burning_ship_init(t_app *app);
 

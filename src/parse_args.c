@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/09 18:50:10 by paperrin          #+#    #+#             */
-/*   Updated: 2017/10/11 16:13:05 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/10/17 20:10:38 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,20 @@ void			usage(char *error)
 		ft_putstr_fd("error: ", STDOUT_FILENO);
 		ft_putendl_fd(error, STDOUT_FILENO);
 	}
-	ft_putstr("usage: ./fractol [mandelbrot|julia|burning_ship|tree]\n");
+	ft_putstr("usage: ./fractol [mandelbrot|julia|"
+		"tricorn|burning_ship|tree]\n");
 	exit(EXIT_FAILURE);
 }
 
 t_f_fractal		init_fractal(t_app *app, char *name, int kc)
 {
-	static const int		size = 4 * 3;
+	static const int		size = 5 * 3;
 	static void				*fractals[size] = {
 		(void*)"mandelbrot", (void*)KC_1, (void*)&fract_mandelbrot_init,
 		(void*)"julia", (void*)KC_2, (void*)&fract_julia_init,
-		(void*)"burning_ship", (void*)KC_3, (void*)&fract_burning_ship_init,
-		(void*)"tree", (void*)KC_4, (void*)&fract_tree_init};
+		(void*)"tricorn", (void*)KC_3, (void*)&fract_tricorn_init,
+		(void*)"burning_ship", (void*)KC_4, (void*)&fract_burning_ship_init,
+		(void*)"tree", (void*)KC_5, (void*)&fract_tree_init};
 	t_f_fractal				f_fractal;
 	int						i;
 

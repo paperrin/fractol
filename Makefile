@@ -6,7 +6,7 @@
 #    By: paperrin <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/29 19:37:35 by paperrin          #+#    #+#              #
-#*   Updated: 2017/10/12 09:52:34 by paperrin         ###   ########.fr       *#
+#*   Updated: 2017/10/17 19:45:03 by paperrin         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ CFILES		=	main.c					\
 				core_mandel_julia.c		\
 				fract_mandelbrot.c		\
 				fract_julia.c			\
+				fract_tricorn.c			\
 				fract_burning_ship.c	\
 				fract_tree.c			\
 				parse_args.c			\

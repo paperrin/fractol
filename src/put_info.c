@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/13 10:32:04 by paperrin          #+#    #+#             */
-/*   Updated: 2017/10/16 12:34:27 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/10/17 20:02:35 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ static char		*get_controls_string(t_app *app)
 		{
 			return (
 			"<F2> CONTROLS ---------------------\n \n"
-			" Change fractal: number keys 1 to 4\n"
-			" Move: <UP> <DOWN> <LEFT> <RIGHT>\n"
+			" Change fractal: number keys 1 to 5\n"
+			" Move: W A S D\n"
 			" Fractal parameter (option): mouse movement\n"
 			" Lock/Unlock fractal parameter: L\n"
 			" Zoom: + & -\n"

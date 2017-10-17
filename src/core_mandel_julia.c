@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/08 20:05:18 by paperrin          #+#    #+#             */
-/*   Updated: 2017/10/12 13:20:03 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/10/17 20:20:03 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,17 @@ static void		iterate(t_app *app, t_vec2i screen_pos, t_complex c
 		old = new;
 		sq.r = old.r * old.r;
 		sq.i = old.i * old.i;
-		if ((sq.r + sq.i) > 4)
+		if (sq.r + sq.i > 4)
 			break ;
 		new.r = sq.r - sq.i + c.r;
-		new.i = (old.r + old.i) * (old.r + old.i) - sq.r - sq.i;
-		new.i += c.i;
+		new.i = (old.r + old.i) * (old.r + old.i) - sq.r - sq.i + c.i;
+		if (app->fract.f_fractal == &fract_tricorn)
+			new.i = -new.i;
 	}
 	put_pixel(ft_vec3f(screen_pos.x, screen_pos.y, 0)
 		, iter == app->fract.nb_iter ? ft_color_rgb(0, 0, 0)
 			: ft_color_rgba_to_rgb(app->fract.colors[iter
-				% app->fract.nb_colors])
-		, (void*)app);
+				% app->fract.nb_colors]), (void*)app);
 }
 
 static void		*render_section(void *arg_v)

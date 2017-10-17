@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/29 19:42:58 by paperrin          #+#    #+#             */
-/*   Updated: 2017/10/12 13:20:02 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/10/17 18:26:12 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 static int		create_app(t_app *app, size_t width, size_t height
 		, char *title)
 {
-	app->width = width;
-	app->height = height;
 	if (!(app->mlx.core = mlx_init()))
 		return (0);
 	if (!(app->mlx.win = mlx_new_window(app->mlx.core
@@ -56,9 +54,11 @@ int				main(int ac, char **av)
 	app.mlx.core = NULL;
 	app.f_debug_str = NULL;
 	app.f_controls_str = NULL;
+	app.width = 700;
+	app.height = 700;
 	if (!parse_args(ac, av, &app))
 		return (EXIT_FAILURE);
-	if (!create_app(&app, 1200, 700, "Fract'ol paperrin"))
+	if (!create_app(&app, app.width, app.height, "Fract'ol paperrin"))
 		return (EXIT_FAILURE);
 	mlx_hook(app.mlx.win, X11_KEY_RELEASE, 0, &event_key_release, &app);
 	mlx_hook(app.mlx.win, X11_KEY_PRESS, 0, &event_key_down, &app);
