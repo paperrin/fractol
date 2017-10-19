@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/29 19:44:28 by paperrin          #+#    #+#             */
-/*   Updated: 2017/10/17 19:43:49 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/10/19 16:31:19 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ struct					s_app
 {
 	t_mlx			mlx;
 	t_mlx_image		draw_buf;
-	t_graph_env		g;
+	t_graph_env		*g;
 	int				width;
 	int				height;
 	t_fract			fract;

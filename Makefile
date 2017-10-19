@@ -6,7 +6,7 @@
 #    By: paperrin <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/29 19:37:35 by paperrin          #+#    #+#              #
-#*   Updated: 2017/10/17 19:45:03 by paperrin         ###   ########.fr       *#
+#*   Updated: 2017/10/19 17:39:41 by paperrin         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,20 +36,20 @@ INC_PARAMS	=	$(INC_DIRS:%=-I%)
 
 LIB_PARAMS	=	$(LIB_DIRS:%=-L%)
 
-CFILES		=	main.c					\
-				event.c					\
-				event2.c				\
-				put_pixel.c				\
-				map_nb.c				\
-				core_mandel_julia.c		\
-				fract_mandelbrot.c		\
-				fract_julia.c			\
-				fract_tricorn.c			\
-				fract_burning_ship.c	\
-				fract_tree.c			\
-				parse_args.c			\
-				put_info.c				\
-				clear_image.c			\
+CFILES		=	main.c							\
+				event.c							\
+				event2.c						\
+				put_pixel.c						\
+				map_nb.c						\
+				core_mandel_julia.c				\
+				fract_mandelbrot.c				\
+				fract_julia.c					\
+				fract_tricorn.c					\
+				fract_burning_ship.c			\
+				fract_tree.c					\
+				parse_args.c					\
+				put_info.c						\
+				clear_image.c					\
 				create_palette.c
 
 HFILES		=	./include/fractol.h			\

@@ -6,13 +6,13 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/09 18:50:10 by paperrin          #+#    #+#             */
-/*   Updated: 2017/10/17 20:10:38 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/10/19 16:35:25 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void			error(char *error)
+void				error(char *error)
 {
 	if (error)
 	{
@@ -22,7 +22,7 @@ void			error(char *error)
 	exit(EXIT_FAILURE);
 }
 
-void			usage(char *error)
+void				usage(char *error)
 {
 	if (error)
 	{
@@ -34,7 +34,17 @@ void			usage(char *error)
 	exit(EXIT_FAILURE);
 }
 
-t_f_fractal		init_fractal(t_app *app, char *name, int kc)
+static t_f_fractal	check_init_fractal(t_app *app, char *name
+	, t_f_fractal f_fractal)
+{
+	if (f_fractal)
+		(*f_fractal)(app);
+	else if (name)
+		usage("Invalid fractal name.");
+	return (f_fractal);
+}
+
+t_f_fractal			init_fractal(t_app *app, char *name, int kc)
 {
 	static const int		size = 5 * 3;
 	static void				*fractals[size] = {
@@ -55,14 +65,10 @@ t_f_fractal		init_fractal(t_app *app, char *name, int kc)
 		else if (name && !ft_strcmp(name, fractals[i]))
 			f_fractal = (t_f_fractal)fractals[i + 2];
 	}
-	if (f_fractal)
-		(*f_fractal)(app);
-	else if (name)
-		usage("Invalid fractal name.");
-	return (f_fractal);
+	return (check_init_fractal(app, name, f_fractal));
 }
 
-int				parse_args(int ac, char **av, t_app *app)
+int					parse_args(int ac, char **av, t_app *app)
 {
 	if (ac > 1)
 	{

@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/29 19:42:58 by paperrin          #+#    #+#             */
-/*   Updated: 2017/10/17 18:26:12 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/10/19 16:29:12 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,14 @@ int				main(int ac, char **av)
 {
 	t_app	app;
 
-	(void)ac;
-	(void)av;
 	app.fract.colors = NULL;
 	app.mlx.core = NULL;
+	app.draw_buf.image = NULL;
 	app.f_debug_str = NULL;
 	app.f_controls_str = NULL;
 	app.width = 700;
 	app.height = 700;
+	app.g = NULL;
 	if (!parse_args(ac, av, &app))
 		return (EXIT_FAILURE);
 	if (!create_app(&app, app.width, app.height, "Fract'ol paperrin"))

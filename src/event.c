@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/29 20:18:42 by paperrin          #+#    #+#             */
-/*   Updated: 2017/10/17 19:52:47 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/10/19 01:42:45 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ int			event_key_release(int key, void *param)
 		if (app->fract.f_fractal == &fract_tree)
 			fract_tree_init(app);
 		app->fract.pos = app->fract.origin;
-		app->fract.size = app->fract.base_size;
 		app->fract.size = (t_vec3ld){app->fract.base_size.x / app->fract.pos.z
 			, app->fract.base_size.y / app->fract.pos.z, 0};
 	}

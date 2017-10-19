@@ -6,7 +6,7 @@
 /*   By: paperrin <paperrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/22 19:23:31 by paperrin          #+#    #+#             */
-/*   Updated: 2017/10/17 19:58:47 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/10/19 17:05:52 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,20 @@ void			branch(t_app *app, int l, float w, int it)
 
 	if (it >= app->fract.nb_iter)
 		return ;
-	ft_graph_translate(&app->g, 0, -l, 0);
-	app->g.fill_rgba = app->fract.colors[it % app->fract.nb_colors];
-	ft_graph_env_aaline(&app->g, ft_vec2i(0, l), ft_vec2i(0, 0), w);
+	ft_graph_translate(app->g, 0, -l, 0);
+	app->g->fill_rgba = app->fract.colors[it % app->fract.nb_colors];
+	ft_graph_env_aaline(app->g, ft_vec2i(0, l), ft_vec2i(0, 0), w);
 	app->fract.nb_branches++;
-	if (!ft_graph_push(&app->g))
+	if (!ft_graph_push(app->g))
 		return ;
-	ft_graph_rot_z(&app->g, -angle + bend);
+	ft_graph_rot_z(app->g, -angle + bend);
 	branch(app, l * size_mult, w - app->fract.branch_width, it + 1);
-	ft_graph_pop(&app->g);
-	if (!ft_graph_push(&app->g))
+	ft_graph_pop(app->g);
+	if (!ft_graph_push(app->g))
 		return ;
-	ft_graph_rot_z(&app->g, angle + bend);
+	ft_graph_rot_z(app->g, angle + bend);
 	branch(app, l * size_mult, w - app->fract.branch_width, it + 1);
-	ft_graph_pop(&app->g);
+	ft_graph_pop(app->g);
 }
 
 void		fract_tree(t_app *app)
@@ -41,12 +41,12 @@ void		fract_tree(t_app *app)
 	app->fract.branch_width = (app->fract.trunk_width - 0.5) / app->fract.nb_iter;
 	app->fract.nb_branches = 0;
 
-	if (!ft_graph_push(&app->g))
+	if (!ft_graph_push(app->g))
 		return ;
-	ft_graph_translate(&app->g, app->width / 2 + app->fract.trunk_offset.x
+	ft_graph_translate(app->g, app->width / 2 + app->fract.trunk_offset.x
 		, app->height + app->fract.trunk_offset.y, 0);
 	branch(app, app->fract.trunk_height, app->fract.trunk_width, 0);
-	ft_graph_pop(&app->g);
+	ft_graph_pop(app->g);
 
 	mlx_put_image_to_window(app->mlx.core, app->mlx.win
 			, app->draw_buf.image, 0, 0);
