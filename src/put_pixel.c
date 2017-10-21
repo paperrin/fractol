@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/30 14:39:45 by paperrin          #+#    #+#             */
-/*   Updated: 2017/10/11 15:50:23 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/10/21 19:01:42 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ void					put_pixel(t_vec3f pos, t_color_rgb rgb, void *param)
 			>> (i * 8);
 }
 
-void					put_pixel_rgba(t_vec3f pos, t_color_rgba rgba, void *param)
+void					put_pixel_rgba(t_vec3f pos, t_color_rgba rgba
+		, void *param)
 {
 	size_t			index;
 	unsigned int	color_encoded;

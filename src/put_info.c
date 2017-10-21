@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/13 10:32:04 by paperrin          #+#    #+#             */
-/*   Updated: 2017/10/17 20:02:35 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/10/21 20:33:04 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ static void		put_string_to_screen(t_app *app, t_point point, char *str)
 
 static char		*get_debug_string(t_app *app)
 {
-	char	*str;
+	static const char	*state[2] = {"UNLOCKED", "LOCKED"};
+	char				*str;
 
 	if (!app->show_debug)
 		str = ft_strdup("<F1> DEBUG\n");
@@ -44,9 +45,10 @@ static char		*get_debug_string(t_app *app)
 		{
 			ft_asprintf(&str
 				, "<F1> DEBUG ------------------------\n \n"
-					" Iterations: %4d\n"
-					" \n"
-				, app->fract.nb_iter);
+					" Iterations: %7d\n"
+					" Parameter: %8s\n \n"
+				, app->fract.nb_iter
+				, state[app->fract.mouse_locked]);
 		}
 	}
 	return (str);
@@ -68,8 +70,8 @@ static char		*get_controls_string(t_app *app)
 			" Move: W A S D\n"
 			" Fractal parameter (option): mouse movement\n"
 			" Lock/Unlock fractal parameter: L\n"
-			" Zoom: + & -\n"
-			" Change iterations: [ & ]\n"
+			" Zoom: + & -, mouse click or mousewheel\n"
+			" Decr/Incr iterations: [ & ]\n"
 			" Reset view: R\n"
 			" Quit: <ESC>");
 		}
@@ -85,9 +87,12 @@ void			put_info(t_app *app)
 	if (!(debug_str = get_debug_string(app)))
 		return ;
 	str = ft_strjoin(debug_str, get_controls_string(app));
-	if (!str)
+	if (!str || !debug_str)
 	{
-		free(debug_str);
+		if (str)
+			free(str);
+		if (debug_str)
+			free(debug_str);
 		return ;
 	}
 	point.pos = ft_vec2i(7, 2);

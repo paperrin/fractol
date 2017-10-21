@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/08 00:36:37 by paperrin          #+#    #+#             */
-/*   Updated: 2017/10/11 15:50:39 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/10/21 21:06:54 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int				event_mouse_press(int key, int x, int y, void *param)
 	t_app	*app;
 
 	app = (t_app*)param;
-	ft_printf("%d\n", key);
 	if (key == BC_LEFT || key == BC_RIGHT
 			|| key == BC_WHEEL_UP || key == BC_WHEEL_DOWN)
 		zoom(app, ft_vec2i(x, y), 1.2, key == BC_LEFT || key == BC_WHEEL_UP);

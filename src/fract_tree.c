@@ -6,7 +6,7 @@
 /*   By: paperrin <paperrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/22 19:23:31 by paperrin          #+#    #+#             */
-/*   Updated: 2017/10/19 17:05:52 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/10/21 21:05:56 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,17 @@ void			branch(t_app *app, int l, float w, int it)
 	ft_graph_pop(app->g);
 }
 
-void		fract_tree(t_app *app)
+void			fract_tree(t_app *app)
 {
-	app->fract.branch_width = (app->fract.trunk_width - 0.5) / app->fract.nb_iter;
+	app->fract.branch_width = (app->fract.trunk_width - 0.5)
+			/ app->fract.nb_iter;
 	app->fract.nb_branches = 0;
-
 	if (!ft_graph_push(app->g))
 		return ;
 	ft_graph_translate(app->g, app->width / 2 + app->fract.trunk_offset.x
 		, app->height + app->fract.trunk_offset.y, 0);
 	branch(app, app->fract.trunk_height, app->fract.trunk_width, 0);
 	ft_graph_pop(app->g);
-
 	mlx_put_image_to_window(app->mlx.core, app->mlx.win
 			, app->draw_buf.image, 0, 0);
 	put_info(app);
@@ -56,21 +55,24 @@ void		fract_tree(t_app *app)
 
 static char		*get_debug_str(t_app *app)
 {
-	char	*str;
+	static const char	*state[2] = {"UNLOCKED", "LOCKED"};
+	char				*str;
 
 	ft_asprintf(&str
 		, "<F1> DEBUG ------------------------\n \n"
-			" Iterations:   %4d\n"
-			" Nb branches: %5d\n"
-			" Trunk height: %4d\n"
-			" Trunk width:    %2d\n"
+			" Iterations:   %5d\n"
+			" Parameter: %8s\n"
+			" Nb branches: %6d\n"
+			" Trunk height: %5d\n"
+			" Trunk width:    %3d\n"
 			" \n"
-		, app->fract.nb_iter, app->fract.nb_branches
-		, app->fract.trunk_height, app->fract.trunk_width);
+		, app->fract.nb_iter, state[app->fract.mouse_locked]
+		, app->fract.nb_branches, app->fract.trunk_height
+		, app->fract.trunk_width);
 	return (str);
 }
 
-static char		*get_controls_str()
+static char		*get_controls_str(void)
 {
 	return (
 	"<F2> CONTROLS ---------------------\n \n"
@@ -78,8 +80,9 @@ static char		*get_controls_str()
 	" Move: W A S D\n"
 	" Fractal parameter (option): mouse movement\n"
 	" Lock/Unlock fractal parameter: L\n"
-	" Increase tree size: + & -\n"
-	" Change iterations: [ & ]\n"
+	" Decr/Incr trunk height:\n"
+	"   - & +, R & L mouse click, wheel up/down\n"
+	" Decr/Incr iterations: [ & ]\n"
 	" Reset view: R\n"
 	" Quit: <ESC>");
 }

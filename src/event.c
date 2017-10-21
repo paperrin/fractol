@@ -6,13 +6,13 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/29 20:18:42 by paperrin          #+#    #+#             */
-/*   Updated: 2017/10/19 01:42:45 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/10/21 20:14:02 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static void	increment_max_iter(t_app * app, int inc)
+static void	increment_max_iter(t_app *app, int inc)
 {
 	if ((app->fract.nb_iter > ABS(inc) && inc < 0)
 			|| (app->fract.nb_iter < app->fract.max_iter && inc > 0))
@@ -29,8 +29,8 @@ static void	move_action(t_app *app, t_vec2i sign)
 	speed = 0.2;
 	app->fract.pos.x += (sign.x * speed) / app->fract.pos.z;
 	app->fract.pos.y += (sign.y * speed) / app->fract.pos.z;
-	app->fract.trunk_offset.x += sign.x * 5;
-	app->fract.trunk_offset.y += sign.y * 5;
+	app->fract.trunk_offset.x -= sign.x * 5;
+	app->fract.trunk_offset.y -= sign.y * 5;
 }
 
 int			event_key_down(int key, void *param)

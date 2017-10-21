@@ -6,7 +6,7 @@
 /*   By: paperrin <paperrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 21:36:56 by paperrin          #+#    #+#             */
-/*   Updated: 2017/10/17 19:53:50 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/10/21 18:57:01 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ void			clear_image(t_app *app, t_color_rgb color)
 			app->draw_buf.pixels[j * 4 + i] = encoded >> (i * 8);
 	}
 	i = -1;
-	while(++i < app->width * app->height)
+	while (++i < app->width * app->height)
 		app->draw_buf.colors[i] = color;
 }

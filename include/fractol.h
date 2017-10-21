@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/29 19:44:28 by paperrin          #+#    #+#             */
-/*   Updated: 2017/10/19 16:31:19 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/10/21 19:19:41 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include "ft_array.h"
 # include "ft_graph.h"
 # include "mlx.h"
-# include "X11.h"
+# include "x11.h"
 
 # define SCREEN_DIV 5
 
@@ -89,7 +89,7 @@ struct					s_app
 	int				show_controls;
 	int				show_debug;
 	char			*(*f_debug_str)(t_app *app);
-	char			*(*f_controls_str)();
+	char			*(*f_controls_str)(void);
 	t_vec2i			mouse_pos;
 };
 
@@ -104,18 +104,19 @@ typedef struct			s_thread_arg
 	t_f_compute_zc	f_compute_zc;
 }						t_thread_arg;
 
-typedef struct		s_point
+typedef struct			s_point
 {
 	t_vec2i			pos;
 	t_color_rgb		color;
-}					t_point;
+}						t_point;
 
 void					destroy_app(t_app *app, int exit_code);
 int						event_key_press(int key, void *param);
 int						event_key_release(int key, void *param);
 int						event_key_down(int key, void *param);
 int						event_mouse_press(int key, int x, int y, void *param);
-int						event_mouse_release(int key, int x, int y, void *param);
+int						event_mouse_release(int key, int x, int y
+		, void *param);
 int						event_mouse_motion(int x, int y, void *param);
 int						event_loop(void *param);
 void					put_pixel(t_vec3f pos, t_color_rgb rgb
