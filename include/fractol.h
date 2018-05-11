@@ -24,7 +24,7 @@
 # include "ft_array.h"
 # include "ft_graph.h"
 # include "mlx.h"
-# include "x11.h"
+# include "X11.h"
 
 # define SCREEN_DIV 5
 
